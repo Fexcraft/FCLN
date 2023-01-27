@@ -1,4 +1,4 @@
-package net.fexcraft.lib.common.json;
+package net.fexcraft.lib.tmt;
 
 import javax.annotation.Nullable;
 
@@ -6,6 +6,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import net.fexcraft.lib.common.Static;
+import net.fexcraft.lib.common.json.JsonUtil;
 import net.fexcraft.lib.common.math.Vec3f;
 import net.fexcraft.lib.common.utils.Print;
 import net.fexcraft.lib.tmt.ModelRendererTurbo;

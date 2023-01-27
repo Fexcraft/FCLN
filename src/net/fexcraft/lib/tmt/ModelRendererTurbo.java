@@ -23,7 +23,7 @@ import net.fexcraft.lib.common.utils.ObjParser.ObjModel;
  * This is a (by now) heavily modified version of TMT, it was and is being updated/maintained/improved by FEX___96.
  * Due to various circumstances, starting from version "XII.44" of FCL (October 2018) the license changes to the Fexcraft "Common" License for "Modifications".
  * <hr>
- * If you find any code here that shouldn't be, inform me and it will be removed <b>as soon as possible</b>.
+ * If you find any code here that shouldn't be, inform me, and it will be removed <b>as soon as possible</b>.
  *
  * @originalAuthor GaryCXJk
  * @author Ferdinand Calo' (FEX___96)

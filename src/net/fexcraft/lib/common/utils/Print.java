@@ -5,11 +5,12 @@ import net.fexcraft.lib.common.Static;
 public class Print {
 
 	public static final void devcon(String url){
-		if(!Static.devmode) return; console(url);
+		if(!Static.dev()) return;
+		console(url);
 	}
 
-	public static final void console(String url){
-		System.out.println(url);
+	public static final void console(String str){
+		System.out.println(str);
 	}
 	
 	public static final void console(Object... objects){

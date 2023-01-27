@@ -8,14 +8,13 @@ import com.google.common.collect.ImmutableList;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import net.fexcraft.lib.common.json.JsonToTMT;
 import net.fexcraft.lib.common.json.JsonUtil;
 import net.fexcraft.lib.mc.utils.Static;
 import net.minecraft.util.ResourceLocation;
 
 /**
  * Basic multi-purpose model base class that can be initialized via "JTMT" format 2 JSONs.<br>
- * This format is based on the one in FVTM, but simpler and with less features.
+ * This format is based on the one in FVTM, but simpler and with fewer features.
  * 
  * @author Ferdinand Calo' (FEX___96)
  *

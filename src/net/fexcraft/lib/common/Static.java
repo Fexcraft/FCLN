@@ -12,11 +12,10 @@ import java.util.Random;
  */
 public class Static {
 
-	public static boolean mclib = false;
-	public static boolean devmode = false;
-	public static boolean server = false;
+	private static boolean mclib = false;
+	private static boolean devmode = false;
+	private static boolean server = false;
 
-	public static final float MODELSCALE = 0.0625F;
 	public static final float PI = 3.14159265358979323846f;
 	public static final float PI2 = PI + PI;
 
@@ -47,8 +46,7 @@ public class Static {
 
 	public static final String zero(long am){
 		StringBuffer buff = new StringBuffer();
-		for(long l = 0; l < am; l++)
-			buff.append("0");
+		for(long l = 0; l < am; l++) buff.append("0");
 		return buff.toString();
 	}
 
@@ -56,7 +54,7 @@ public class Static {
 		return mclib = bool;
 	}
 
-	public static final boolean setDevmode(boolean bool){
+	public static final boolean setDevMode(boolean bool){
 		return devmode = bool;
 	}
 

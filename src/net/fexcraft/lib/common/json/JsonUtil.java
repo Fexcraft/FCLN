@@ -27,6 +27,7 @@ import net.minecraft.util.ResourceLocation;
  * @author Ferdinand (FEX___96)
  * @comment Main class for Json processing.
  */
+@Deprecated
 public class JsonUtil{
 	
 	private static final JsonUtil instance = new JsonUtil();

@@ -20,7 +20,7 @@ import net.fexcraft.lib.common.json.JsonUtil;
  * @author Ferdinand Calo' (FEX___96)
  * 
  * NOTE: "https" version, usually only used to connect to the data server, as such "ignoring" certificates since java doesn't process this like a browser.
- * Otherwise if there would be a dedicated way to insert the data server's cert into java it will be added here.
+ * Otherwise, if there would be a dedicated way to insert the data server's cert into java it will be added here.
  *
  */
 public class HttpsUtil {
