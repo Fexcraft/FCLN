@@ -10,8 +10,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import javax.annotation.Nullable;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -21,7 +19,6 @@ import com.google.gson.JsonParser;
 import com.google.gson.JsonPrimitive;
 
 import net.fexcraft.lib.common.utils.Print;
-import net.minecraft.util.ResourceLocation;
 
 /**
  * @author Ferdinand (FEX___96)
@@ -119,7 +116,7 @@ public class JsonUtil{
 	 * @param def default element to return in case there are errors while parsing
 	 * @return JsonElement from the given file, can be null
 	 */
-	public static JsonElement read(File file, boolean print_err, @Nullable JsonElement def){
+	public static JsonElement read(File file, boolean print_err, JsonElement def){
 		try{
 			if(!file.getParentFile().exists()){
 				file.getParentFile().mkdirs();
@@ -218,7 +215,6 @@ public class JsonUtil{
 	/**
 	 * @param file File to be updated
 	 * @param string Target value/object
-	 * @param value
 	 */
 	public static void update(File file, String string, JsonElement element){
 		JsonObject obj = get(file);
@@ -296,7 +292,6 @@ public class JsonUtil{
 	 * Gets a value from a JsonObject if it exists, else returns null
 	 * @param obj
 	 * @param target
-	 * @param default_value
 	 */
 	public static String getStringIfExists(JsonObject obj, String target){
 		if(obj.has(target)){
@@ -309,7 +304,6 @@ public class JsonUtil{
 	 * Gets a value from a JsonObject if it exists, else returns -1
 	 * @param obj
 	 * @param target
-	 * @param default_value
 	 */
 	public static Number getNumberIfExists(JsonObject obj, String target){
 		if(obj.has(target)){
@@ -322,7 +316,6 @@ public class JsonUtil{
 	 * Gets a value from a JsonObject if it exists, else returns false
 	 * @param obj
 	 * @param target
-	 * @param default_value
 	 */
 	public static boolean getBooleanIfExists(JsonObject obj, String target){
 		if(obj.has(target)){
@@ -335,7 +328,6 @@ public class JsonUtil{
 	 * Gets a JsonElement from a JsonObject if it exists, else returns null
 	 * @param obj
 	 * @param target
-	 * @param default_value
 	 */
 	public static JsonElement getIfExists(JsonObject obj, String target){
 		if(!obj.has(target)){
@@ -408,7 +400,6 @@ public class JsonUtil{
 	/**
 	 * Checks if JsonArray contains String.
 	 * @param array
-	 * @param string
 	 * @return
 	 */
 	public static boolean contains(JsonArray array, Number number){
@@ -454,22 +445,6 @@ public class JsonUtil{
 		for(String string : json){
 			try{
 				list.add(UUID.fromString(string));
-			}
-			catch(Exception e){
-				e.printStackTrace();
-			}
-		}
-		return list;
-	}
-	
-
-
-	public static ArrayList<ResourceLocation> jsonArrayToResourceLocationArray(JsonArray array) {
-		ArrayList<ResourceLocation> list = new ArrayList<ResourceLocation>();
-		ArrayList<String> json = jsonArrayToStringArray(array);
-		for(String string : json){
-			try{
-				list.add(new ResourceLocation(string));
 			}
 			catch(Exception e){
 				e.printStackTrace();
@@ -528,14 +503,6 @@ public class JsonUtil{
 	public static JsonElement getArrayFromUUIDList(ArrayList<UUID> array){
 		JsonArray ja = new JsonArray();
 		for(UUID s : array){
-			add(ja, s.toString());
-		}
-		return ja;
-	}
-
-	public static JsonElement getArrayFromResourceLocationList(ArrayList<ResourceLocation> array){
-		JsonArray ja = new JsonArray();
-		for(ResourceLocation s : array){
 			add(ja, s.toString());
 		}
 		return ja;

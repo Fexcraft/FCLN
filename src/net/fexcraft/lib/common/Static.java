@@ -12,7 +12,6 @@ import java.util.Random;
  */
 public class Static {
 
-	private static boolean mclib = false;
 	private static boolean devmode = false;
 	private static boolean server = false;
 
@@ -50,10 +49,6 @@ public class Static {
 		return buff.toString();
 	}
 
-	public static final boolean setAsMcLib(boolean bool){
-		return mclib = bool;
-	}
-
 	public static final boolean setDevMode(boolean bool){
 		return devmode = bool;
 	}
@@ -67,9 +62,6 @@ public class Static {
 	}
 
 	public static void halt(int errid){
-		if(mclib){
-			net.fexcraft.lib.mc.utils.Static.halt(errid);
-		}
 		System.exit(errid);
 	}
 
@@ -83,23 +75,14 @@ public class Static {
 	}
 
 	public static boolean isServer(){
-		if(mclib){
-			net.fexcraft.lib.mc.utils.Static.isServer();
-		}
 		return server;
 	}
 
 	public static boolean isClient(){
-		if(mclib){
-			net.fexcraft.lib.mc.utils.Static.isClient();
-		}
 		return !server;
 	}
 
 	public static InputStream getResource(String str){
-		if(mclib){
-			net.fexcraft.lib.mc.utils.Static.getResource(str);
-		}
 		return Static.class.getClassLoader().getResourceAsStream(str);
 	}
 

@@ -15,13 +15,13 @@ public interface AxisRotator {
 			return null;
 		}
 	}
-	
+
 	public static class DefHolder {
-		
-		private static Class<? extends AxisRotator> DEF_IMPL = Axis3DL.class;
-		
+
+		public static Class<? extends AxisRotator> DEF_IMPL = null;
+
 	}
-	
+
 	public static void setDefImpl(Class<? extends AxisRotator> clazz){
 		DefHolder.DEF_IMPL = clazz;
 	}

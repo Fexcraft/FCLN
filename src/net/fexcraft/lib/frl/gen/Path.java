@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import net.fexcraft.app.json.JsonArray;
 import net.fexcraft.app.json.JsonMap;
 import net.fexcraft.lib.common.math.Vec3f;
-import net.minecraft.util.math.Vec3d;
 
 /**
  * Compact version of Path.class from FVTM. Only containing what is necessary for polygon generation.
@@ -94,10 +93,6 @@ public class Path {
 	
 	public static double[] newVector(double x, double y, double z){
 		return new double[]{ x, y, z };
-	}
-
-	public static double[] newVector(Vec3d vec){
-		return new double[]{ vec.x, vec.y, vec.z };
 	}
 	
 	/** Array of 3 values expected. **/
