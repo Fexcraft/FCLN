@@ -67,12 +67,13 @@ public class Polygon {
 		for(Vertex vert : vertices) vert.vector = vert.vector.scale(scale);
 	}
 
-	public void flip(){
+	public Polygon flip(){
         Vertex[] verts = new Vertex[vertices.length];
         for(int i = 0; i < vertices.length; ++i){
             verts[i] = vertices[vertices.length - i - 1];
         }
         vertices = verts;
+		return this;
 	}
 	
 }
