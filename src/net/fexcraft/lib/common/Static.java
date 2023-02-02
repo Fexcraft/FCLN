@@ -94,4 +94,12 @@ public class Static {
 		return deg / 180f * PI;
 	}
 
+	public static double toDegrees(double rad){
+		return rad * 180 / PI;
+	}
+
+	public static double toRadians(double deg){
+		return deg / 180 * PI;
+	}
+
 }
