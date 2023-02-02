@@ -25,7 +25,13 @@ public class TexturedVertex {
 		textureX = other.textureX; textureY = other.textureY;
 	}
 
-	public TexturedVertex setTexturePosition(float x, float y){
+    public TexturedVertex(V3D vec, float u, float v){
+		vector = new Vec3f(vec.x, vec.y, vec.z);
+		textureX = u;
+		textureY = v;
+    }
+
+    public TexturedVertex setTexturePosition(float x, float y){
 		return new TexturedVertex(this, x, y);
 	}
 	
