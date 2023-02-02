@@ -53,8 +53,8 @@ public class V3D {
         return add(vec.x, vec.y, vec.z);
     }
     
-    public V3D add(double x, double y, double z){
-        return new V3D(x + x, y + y, z + z);
+    public V3D add(double dx, double dy, double dz){
+        return new V3D(x + dx, y + dy, z + dz);
     }
 
     public V3D scale(double scale){
