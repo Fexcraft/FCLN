@@ -1,7 +1,5 @@
 package net.fexcraft.lib.common;
 
-import net.fexcraft.app.json.FJson;
-
 import java.io.InputStream;
 import java.util.Random;
 
@@ -100,6 +98,20 @@ public class Static {
 
 	public static double toRadians(double deg){
 		return deg / 180 * PI;
+	}
+
+	public static void sleep(){
+		sleep(1000000);
+	}
+
+    public static void sleep(long time){
+		if(!dev()) return;
+		try {
+			Thread.sleep(time);
+		}
+		catch(InterruptedException e){
+			throw new RuntimeException(e);
+		}
 	}
 
 }
