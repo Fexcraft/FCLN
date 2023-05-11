@@ -7,8 +7,6 @@ package net.fexcraft.lib.script;
 
 import java.util.ArrayList;
 
-import net.fexcraft.lib.script.ScrBlock.Type;
-
 /**
  * 
  * @author Ferdinand Calo' (FEX___96)
