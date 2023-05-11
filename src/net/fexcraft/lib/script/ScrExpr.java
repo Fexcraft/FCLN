@@ -9,6 +9,7 @@ import static net.fexcraft.lib.script.ScrElm.FALSE;
 import static net.fexcraft.lib.script.ScrElm.NULL;
 import static net.fexcraft.lib.script.ScrElm.TRUE;
 import static net.fexcraft.lib.script.ScrElm.asBool;
+import static org.apache.commons.lang3.math.NumberUtils.*;
 
 import java.util.ArrayList;
 
@@ -130,7 +131,7 @@ public abstract class ScrExpr {
 				if(str.startsWith("\"")){
 					args.add(new StrElm(str.substring(1, str.endsWith("\"") ? str.length() - 1 : str.length())));
 				}
-				else if(NumberUtils.isCreatable(str)){
+				else if(isParsable(str)){
 					ScrElm elm = null;
 					if(str.contains(".")){
 						elm = new FltElm(neg ? -Float.parseFloat(str) : Float.parseFloat(str));
