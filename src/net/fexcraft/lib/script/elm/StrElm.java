@@ -29,7 +29,7 @@ public class StrElm implements ScrElm {
 
 	@Override
 	public int scr_int(){
-		if(NumberUtils.isCreatable(value)){
+		if(NumberUtils.isParsable(value)){
 			return Integer.parseInt(value);
 		}
 		return 0;
@@ -37,7 +37,7 @@ public class StrElm implements ScrElm {
 
 	@Override
 	public float scr_flt(){
-		if(NumberUtils.isCreatable(value)){
+		if(NumberUtils.isParsable(value)){
 			return Float.parseFloat(value);
 		}
 		return 0;
