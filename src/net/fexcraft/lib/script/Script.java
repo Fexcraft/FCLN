@@ -15,7 +15,7 @@ import java.util.Scanner;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Supplier;
 
-import net.fexcraft.lib.mc.utils.Print;
+import net.fexcraft.lib.common.utils.Print;
 
 /**
  * "FEX Script" Version 1.0
@@ -112,8 +112,8 @@ public class Script extends ScrBlock {
 			}
 		}
 		catch(Exception e){
-			Print.log("Error while parsing script with ID '" + id + "'!");
-			Print.log("Parsed till: \n" + print(0));
+			Print.console("Error while parsing script with ID '" + id + "'!");
+			Print.console("Parsed till: \n" + print(0));
 			e.printStackTrace();
 		}
 		finally {
