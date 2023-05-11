@@ -7,7 +7,7 @@ package net.fexcraft.lib.script;
 
 import java.util.ArrayList;
 
-import net.fexcraft.lib.mc.utils.Print;
+import net.fexcraft.lib.common.utils.Print;
 import net.fexcraft.lib.script.elm.BoolElm;
 import net.fexcraft.lib.script.elm.BoolElm.Final;
 import net.fexcraft.lib.script.elm.FltElm;
@@ -24,23 +24,23 @@ import net.fexcraft.lib.script.elm.StrElm;
  *
  */
 public abstract interface ScrElm {
-	
+
 	public static final NullElm NULL = new NullElm();
 	public static final BoolElm TRUE = new Final(true);
 	public static final BoolElm FALSE = new Final(false);
-	
+
 	public default String scr_str(){
 		return this.getClass().getName();
 	}
-	
+
 	public default int scr_int(){
 		return 0;
 	}
-	
+
 	public default float scr_flt(){
 		return 0f;
 	}
-	
+
 	public default boolean scr_bln(){
 		return false;
 	}
@@ -48,19 +48,19 @@ public abstract interface ScrElm {
 	public default ScrElmType scr_type(){
 		return ScrElmType.OBJ;
 	}
-	
+
 	//
-	
+
 	public default void scr_set(String val){}
 
 	public default void scr_set(int val){}
-	
+
 	public default void scr_set(float val){}
 
 	public default void scr_set(boolean val){}
 
 	public default void scr_set(ScrElm nex){}
-	
+
 	//
 
 	public default String scr_print(){
@@ -81,9 +81,9 @@ public abstract interface ScrElm {
 				for(ScrElm elm : args){
 					if(elm.scr_type().reference()){
 						ScrElm e = ((RefElm)elm).getElm(block);
-						Print.log(((RefElm)elm).negative() ? e.scr_type().number() ? -elm.scr_flt() : !elm.scr_bln() :  e.scr_print());
+						Print.console(((RefElm) elm).negative() ? e.scr_type().number() ? -elm.scr_flt() : !elm.scr_bln() : e.scr_print());
 					}
-					else Print.log(elm.scr_print());
+					else Print.console(elm.scr_print());
 				}
 				break;
 			}
