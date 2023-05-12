@@ -15,6 +15,7 @@ import java.util.Scanner;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Supplier;
 
+import net.fexcraft.app.fmt.polygon.Arrows;
 import net.fexcraft.lib.common.utils.Print;
 
 /**
@@ -130,7 +131,11 @@ public class Script extends ScrBlock {
 		}
 		return expr;
 	}
-	
+
+	public ScrAction act(String name){
+		return (ScrAction)blocks.get(name);
+	}
+
 	//java records would be nice here
 	private static class ParseExprParams {
 		
