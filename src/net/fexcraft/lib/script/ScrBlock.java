@@ -10,8 +10,6 @@ import static net.fexcraft.lib.script.ScrElm.NULL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import net.fexcraft.app.fmt.polygon.Arrows;
-
 /**
  * 
  * @author Ferdinand Calo' (FEX___96)

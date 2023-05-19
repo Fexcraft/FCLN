@@ -12,13 +12,11 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.function.BiConsumer;
 
-import net.fexcraft.app.json.JsonHandler.ISW;
 import net.fexcraft.lib.common.utils.Print;
 import net.fexcraft.lib.scr.elm.BoolElm;
 import net.fexcraft.lib.scr.elm.FltElm;
 import net.fexcraft.lib.scr.elm.IntElm;
 import net.fexcraft.lib.scr.elm.StrElm;
-import org.lwjgl.system.CallbackI.S;
 
 /**
  *
@@ -200,8 +198,6 @@ public class ScriptParser {
                     }
                     continue;
                 }
-                //isw.skipw();
-                //parse expr
                 isw.nextline();
                 continue;
             }
