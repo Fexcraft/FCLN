@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import net.fexcraft.lib.common.math.RGB;
 import net.fexcraft.lib.common.math.TexturedPolygon;
 import net.fexcraft.lib.common.math.Vec3f;
+import net.fexcraft.lib.frl.gen.Generator;
 import net.fexcraft.lib.tmt.ModelRendererTurbo;
 
 /**
@@ -102,6 +103,10 @@ public class Polyhedron<GLO> {
 		rotY = y;
 		rotZ = z;
 		return this;
+	}
+
+	public Generator<GLO> newGen(){
+		return new Generator<GLO>(this);
 	}
 
 }
