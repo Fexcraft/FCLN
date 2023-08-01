@@ -15,17 +15,17 @@ import net.fexcraft.lib.tmt.ModelRendererTurbo;
  * @author Ferdinand Calo' (FEX___96)
  *
  */
-public class Polyhedron<GLO> {
+public class Polyhedron<GL extends GLO> {
 	
 	public ArrayList<Polygon> polygons = new ArrayList<>();
-	public ArrayList<Polyhedron<GLO>> sub;
+	public ArrayList<Polyhedron<GL>> sub;
 	public float rotX, rotY, rotZ;
 	public float posX, posY, posZ;
 	public float texU, texV;
 	public boolean recompile, visible = true;
 	public RotationOrder rotOrder = RotationOrder.YZX;
 	public String name;
-	public GLO glObj;
+	public GL glObj = (GL)GLO.SUPPLIER.get();
 	public Integer glId;
 	
 	public Polyhedron(){}
@@ -34,7 +34,7 @@ public class Polyhedron<GLO> {
 		this.name = name;
 	}
 	
-	public Polyhedron<GLO> rescale(float scale){
+	public Polyhedron<GL> rescale(float scale){
 		for(Polygon gon : polygons) gon.rescale(scale);
 		posX *= scale;
 		posY *= scale;
@@ -42,7 +42,7 @@ public class Polyhedron<GLO> {
 		return this;
 	}
 	
-	public Polyhedron<GLO> color(RGB color){
+	public Polyhedron<GL> color(RGB color){
 		for(Polygon gon : polygons) gon.color(color);
 		return this;
 	}
@@ -51,7 +51,7 @@ public class Polyhedron<GLO> {
 		RENDERER.render(this);
 	}
 	
-	public Polyhedron<GLO> importMRT(ModelRendererTurbo turbo, boolean insoff, float scale){
+	public Polyhedron<GL> importMRT(ModelRendererTurbo turbo, boolean insoff, float scale){
 		this.name = turbo.boxName;
 		for(TexturedPolygon tp : turbo.getFaces()){
 			Vertex[] verts = new Vertex[tp.getVertices().length];
@@ -86,27 +86,46 @@ public class Polyhedron<GLO> {
 		RENDERER.delete(this);
 	}
 	
-	public Polyhedron<GLO> setGlObj(GLO newobj){
+	public Polyhedron<GL> setGlObj(GL newobj){
 		this.glObj = newobj;
 		return this;
 	}
 
-	public Polyhedron<GLO> pos(float x, float y, float z){
+	public Polyhedron<GL> pos(float x, float y, float z){
 		posX = x;
 		posY = y;
 		posZ = z;
 		return this;
 	}
 
-	public Polyhedron<GLO> rot(float x, float y, float z){
+	public Polyhedron<GL> rot(float x, float y, float z){
 		rotX = x;
 		rotY = y;
 		rotZ = z;
 		return this;
 	}
 
-	public Generator<GLO> newGen(){
-		return new Generator<GLO>(this);
+	public Generator<GL> newGen(){
+		return new Generator<GL>(this);
+	}
+
+	public Polyhedron copy(boolean full){
+		Polyhedron hed = new Polyhedron();
+		hed.glObj.copy(glObj, full);
+		hed.visible = visible;
+		hed.pos(posX, posY, posZ);
+		hed.rot(rotX, rotY, rotZ);
+		hed.rotOrder = rotOrder;
+		hed.texU = texU;
+		hed.texV = texV;
+		hed.name = name;
+		if(full){
+			for(Polygon poly : polygons){
+				hed.polygons.add(poly.copy(full));
+			}
+		}
+		else hed.polygons.addAll(polygons);
+		return hed;
 	}
 
 }
