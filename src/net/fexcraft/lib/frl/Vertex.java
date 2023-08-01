@@ -68,4 +68,16 @@ public class Vertex {
 		return new Vertex(this).uv(u, v);
 	}
 
+	public Vertex copy(){
+		Vertex vert = null;
+		if(this instanceof ColoredVertex){
+			vert = new ColoredVertex(vector.copy());
+			vert.color(color().copy());
+		}
+		else{
+			vert = new Vertex(vector.copy());
+		}
+		return vert.uv(u, v).norm(norm == null ? null : norm.copy());
+	}
+
 }
