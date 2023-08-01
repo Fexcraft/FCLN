@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import net.fexcraft.lib.common.Static;
 import net.fexcraft.lib.common.math.AxisRotator;
 import net.fexcraft.lib.common.math.Vec3f;
+import net.fexcraft.lib.frl.GLO;
 import net.fexcraft.lib.frl.Polygon;
 import net.fexcraft.lib.frl.Polyhedron;
 import net.fexcraft.lib.frl.Vertex;
@@ -21,7 +22,7 @@ public class Generator_Cylinder {
 	
     public static final int FRONT = 0, BACK = 1, LEFT = 2, RIGHT = 3, TOP = 4, BOTTOM = 5;
 
-	public static <GLO> void make(Polyhedron<GLO> poly, ValueMap map){
+	public static <GL extends GLO> void make(Polyhedron<GL> poly, ValueMap map){
 		float radius = map.getValue("radius", 1f);
 		float radius2 = map.getValue("radius2", 0f);
 		float radius3 = map.getValue("radius3", radius);
