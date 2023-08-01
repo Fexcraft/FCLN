@@ -75,5 +75,16 @@ public class Polygon {
         vertices = verts;
 		return this;
 	}
-	
+
+	public Polygon copy(boolean full){
+		if(full){
+			Polygon poly = new Polygon(vertices.length);
+			for(int i = 0; i < vertices.length; i++){
+				poly.vertices[i] = vertices[i].copy();
+			}
+			return poly.lines(lines).textured(textured);
+		}
+		return new Polygon(vertices).lines(lines).textured(textured);
+	}
+
 }
