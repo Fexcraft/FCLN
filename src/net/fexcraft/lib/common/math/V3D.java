@@ -1,7 +1,7 @@
 package net.fexcraft.lib.common.math;
 
 /**
- * @author Ferdinand
+ * @author Ferdinand Calo' (FEX___96)
 */
 public class V3D {
 
