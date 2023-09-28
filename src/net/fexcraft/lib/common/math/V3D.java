@@ -5,7 +5,8 @@ package net.fexcraft.lib.common.math;
 */
 public class V3D {
 
-    public double x, y, z;
+	public static final V3D NULL = new V3D();
+	public double x, y, z;
 
     public V3D(){
     	x = y = z = 0;
@@ -184,5 +185,5 @@ public class V3D {
 	public V3D copy(){
 		return new V3D(x, y, z);
 	}
-    
+
 }
