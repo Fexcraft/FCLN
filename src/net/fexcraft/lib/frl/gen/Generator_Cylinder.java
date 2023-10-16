@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import net.fexcraft.lib.common.Static;
 import net.fexcraft.lib.common.math.AxisRotator;
 import net.fexcraft.lib.common.math.Vec3f;
+import net.fexcraft.lib.frl.GLO;
 import net.fexcraft.lib.frl.Polygon;
 import net.fexcraft.lib.frl.Polyhedron;
 import net.fexcraft.lib.frl.Vertex;
@@ -21,9 +22,11 @@ public class Generator_Cylinder {
 	
     public static final int FRONT = 0, BACK = 1, LEFT = 2, RIGHT = 3, TOP = 4, BOTTOM = 5;
 
-	public static <GLO> void make(Polyhedron<GLO> poly, ValueMap map){
+	public static <GL extends GLO> void make(Polyhedron<GL> poly, ValueMap map){
 		float radius = map.getValue("radius", 1f);
 		float radius2 = map.getValue("radius2", 0f);
+		float radius3 = map.getValue("radius3", radius);
+		float radius4 = map.getValue("radius4", radius2);
 		float length = map.getValue("length", 1f);
 		AxisDir dir = map.getValue("axis_dir", AxisDir.X_POSITIVE);
 		int segments = map.getValue("segments", 4);
@@ -114,8 +117,10 @@ public class Generator_Cylinder {
 		ArrayList<Vertex> verts3 = new ArrayList<>();
 		for(int repeat = 0; repeat < 2; repeat++){//top/base faces
 			for(int index = 0; index < segments; index++){
-				float size_x = (float)((dir.positive ? -1 : 1) * Math.sin((segpi) * index * 2F + Static.PI + seg_off) * radius * c_s);
-				float size_z = (float)(-Math.cos((segpi) * index * 2F + Static.PI + seg_off) * radius * c_s);
+				double s = Math.sin(segpi * index * 2F + Static.PI + seg_off);
+				double c = -Math.cos(segpi * index * 2F + Static.PI + seg_off);
+				float size_x = (float)((dir.positive ? -1 : 1) * s * radius * c_s);
+				float size_z = (float)(c * radius3 * c_s);
 				float x0 = c_x + (!dir_x ? size_x : 0);
 				float y1 = c_y + (!dir_y ? size_z : 0);
 				float z1 = c_z + (dir_x ? size_x : dir_y ? size_z : 0);
@@ -124,8 +129,8 @@ public class Generator_Cylinder {
 					verts0.add(new Vertex(verts0.get(0)));
 				}
 				//
-				float xSize2 = (float)((dir.positive ? -1 : 1) * Math.sin((segpi) * index * 2F + Static.PI + seg_off) * radius2 * c_s);
-				float zSize2 = (float)(-Math.cos((segpi) * index * 2F + Static.PI + seg_off) * radius2 * c_s);
+				float xSize2 = (float)((dir.positive ? -1 : 1) * s * radius2 * c_s);
+				float zSize2 = (float)(c * radius4 * c_s);
 				x0 = c_x + (!dir_x ? xSize2 : 0);
 				y1 = c_y + (!dir_y ? zSize2 : 0);
 				z1 = c_z + (dir_x ? xSize2 : (dir_y ? zSize2 : 0));
@@ -155,20 +160,20 @@ public class Generator_Cylinder {
 					}
 					Vertex[] arr = new Vertex[4];
 					if(!radial){
-						size_x = (float)(Math.sin((segpi) * i * 2F + (!dir_y ? 0 : Static.PI)) * (0.5F * circle_u));
-						size_y = (float)(Math.cos((segpi) * i * 2F + (!dir_y ? 0 : Static.PI)) * (0.5F * circle_v));
+						size_x = (float)(Math.sin(segpi * i * 2F + (!dir_y ? 0 : Static.PI)) * (0.5F * circle_u));
+						size_y = (float)(Math.cos(segpi * i * 2F + (!dir_y ? 0 : Static.PI)) * (0.5F * circle_v));
 						arr[0] = verts0.get(i).nauv(uvs[repeat][0] + .5f * circle_u + size_x, uvs[repeat][1] + 0.5F * circle_v + size_y);
 						//
-						size_x = (float)(Math.sin((segpi) * i * 2F + (!dir_y ? 0 : Static.PI)) * (0.5F * circle2_u));
-						size_y = (float)(Math.cos((segpi) * i * 2F + (!dir_y ? 0 : Static.PI)) * (0.5F * circle2_v));
+						size_x = (float)(Math.sin(segpi * i * 2F + (!dir_y ? 0 : Static.PI)) * (0.5F * circle2_u));
+						size_y = (float)(Math.cos(segpi * i * 2F + (!dir_y ? 0 : Static.PI)) * (0.5F * circle2_v));
 						arr[1] = verts1.get(i).nauv(uvs[repeat][0] + .5f * circle_u + size_x, uvs[repeat][1] + 0.5F * circle_v + size_y);
 						//
-						size_x = (float)(Math.sin((segpi) * (i + 1) * 2F + (!dir_y ? 0 : Static.PI)) * (0.5F * circle2_u));
-						size_y = (float)(Math.cos((segpi) * (i + 1) * 2F + (!dir_y ? 0 : Static.PI)) * (0.5F * circle2_v));
+						size_x = (float)(Math.sin(segpi * (i + 1) * 2F + (!dir_y ? 0 : Static.PI)) * (0.5F * circle2_u));
+						size_y = (float)(Math.cos(segpi * (i + 1) * 2F + (!dir_y ? 0 : Static.PI)) * (0.5F * circle2_v));
 						arr[2] = verts1.get(i + 1).nauv(uvs[repeat][0] + .5f * circle_u + size_x, uvs[repeat][1] + 0.5F * circle_v + size_y);
 						//
-						size_x = (float)(Math.sin((segpi) * (i + 1) * 2F + (!dir_y ? 0 : Static.PI)) * (0.5F * circle_u));
-						size_y = (float)(Math.cos((segpi) * (i + 1) * 2F + (!dir_y ? 0 : Static.PI)) * (0.5F * circle_v));
+						size_x = (float)(Math.sin(segpi * (i + 1) * 2F + (!dir_y ? 0 : Static.PI)) * (0.5F * circle_u));
+						size_y = (float)(Math.cos(segpi * (i + 1) * 2F + (!dir_y ? 0 : Static.PI)) * (0.5F * circle_v));
 						arr[3] = verts0.get(i + 1).nauv(uvs[repeat][0] + .5f * circle_u + size_x, uvs[repeat][1] + 0.5F * circle_v + size_y);
 					}
 					else{

@@ -78,7 +78,7 @@ public class Time {
 		return (filenamevalid ? fileformat : format).format(data);
 	}
 	
-	private static final SimpleDateFormat format = new SimpleDateFormat("dd|MM|yyyy HH:mm:ss");
+	private static final SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss dd-MMM-yyyy");
 	private static final SimpleDateFormat fileformat = new SimpleDateFormat("dd.MM.yyyy HH-mm-ss");
 	
 }

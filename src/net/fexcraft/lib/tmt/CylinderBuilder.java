@@ -15,7 +15,7 @@ import net.fexcraft.lib.common.math.Vec3f;
 public class CylinderBuilder implements CustomUVBuilder {
 	
 	private ModelRendererTurbo root;
-	private float x, y, z, radius, radius2, length;
+	private float x, y, z, radius, radius2, radius3, radius4, length;
 	private float base_scale = 1, top_scale = 1, segoff;
 	private int segments, seglimit, direction;
 	private Vec3f topoff = new Vec3f();
@@ -37,6 +37,14 @@ public class CylinderBuilder implements CustomUVBuilder {
 	
 	public CylinderBuilder setRadius(float first, float second){
 		this.radius = first; this.radius2 = second;
+		return this;
+	}
+
+	public CylinderBuilder setRadius(float first_s, float first_c, float second_s, float second_c){
+		this.radius = first_s;
+		this.radius2 = second_s;
+		this.radius3 = first_c;
+		this.radius4 = second_c;
 		return this;
 	}
 	
@@ -173,10 +181,12 @@ public class CylinderBuilder implements CustomUVBuilder {
 	}
 	
 	public ModelRendererTurbo build(){
+		if(radius3 == 0f) radius3 = radius;
+		if(radius4 == 0f) radius4 = radius2;
 		if(segments < 3) segments = 3;
 		if(seglimit <= 0) seglimit = segments;
 		boolean segl = seglimit < segments;
-		if(radius2 == 0f && toprot == null && !segl){
+		if(radius2 == 0f && toprot == null && !segl && radius3 == radius){
 			return root.addCylinder(x, y, z, radius, length, segments, base_scale, top_scale, direction, (int)Math.floor(radius * 2F), (int)Math.floor(radius * 2F), (int)Math.floor(length), topoff);
 		}
 		float diameter = (int)Math.floor(radius * 2F);
@@ -254,7 +264,7 @@ public class CylinderBuilder implements CustomUVBuilder {
 		for(int repeat = 0; repeat < 2; repeat++){//top/base faces
 			for(int index = 0; index < segments; index++){
 				float xSize = (float)((root.mirror ^ dirMirror ? -1 : 1) * Math.sin((segpi) * index * 2F + Static.PI + segoff) * radius * sCur);
-				float zSize = (float)(-Math.cos((segpi) * index * 2F + Static.PI + segoff) * radius * sCur);
+				float zSize = (float)(-Math.cos((segpi) * index * 2F + Static.PI + segoff) * radius3 * sCur);
 				float xPlace = xCur + (!dirSide ? xSize : 0);
 				float yPlace = yCur + (!dirTop ? zSize : 0);
 				float zPlace = zCur + (dirSide ? xSize : (dirTop ? zSize : 0));
@@ -264,7 +274,7 @@ public class CylinderBuilder implements CustomUVBuilder {
 				}
 				//
 				float xSize2 = (float)((root.mirror ^ dirMirror ? -1 : 1) * Math.sin((segpi) * index * 2F + Static.PI + segoff) * radius2 * sCur);
-				float zSize2 = (float)(-Math.cos((segpi) * index * 2F + Static.PI + segoff) * radius2 * sCur);
+				float zSize2 = (float)(-Math.cos((segpi) * index * 2F + Static.PI + segoff) * radius4 * sCur);
 				xPlace = xCur + (!dirSide ? xSize2 : 0);
 				yPlace = yCur + (!dirTop ? zSize2 : 0);
 				zPlace = zCur + (dirSide ? xSize2 : (dirTop ? zSize2 : 0));

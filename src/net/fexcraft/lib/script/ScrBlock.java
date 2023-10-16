@@ -41,7 +41,7 @@ public class ScrBlock {
 		return null;
 	}
 
-	public static enum Type {
+    public static enum Type {
 		
 		SCRIPT,
 		ACTION,
