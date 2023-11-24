@@ -22,6 +22,10 @@ public class V3D {
         z = dz == -0.0f ? 0.0f : dz;
     }
 
+    public V3D(V3I vector){
+        this(vector.x, vector.y, vector.z);
+    }
+
     public V3D(V3D vector){
         this(vector.x, vector.y, vector.z);
     }
