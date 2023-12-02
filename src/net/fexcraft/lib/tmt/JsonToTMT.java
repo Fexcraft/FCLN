@@ -1,13 +1,11 @@
 package net.fexcraft.lib.tmt;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-
+import net.fexcraft.app.json.JsonArray;
+import net.fexcraft.app.json.JsonMap;
 import net.fexcraft.lib.common.Static;
 import net.fexcraft.lib.common.json.JsonUtil;
 import net.fexcraft.lib.common.math.Vec3f;
 import net.fexcraft.lib.common.utils.Print;
-import net.fexcraft.lib.tmt.ModelRendererTurbo;
 
 /**
 * Tool to parse `ModelRendererTurbo` objects from JSON.
@@ -54,70 +52,70 @@ public class JsonToTMT {
 	public static final String[] topoffy = new String[]{"top_offset_y", "topoff_y", "topoffy", "toy"};
 	public static final String[] topoffz = new String[]{"top_offset_z", "topoff_z", "topoffz", "toz"};
 	
-	public final static ModelRendererTurbo parse(Object base, JsonObject obj, int tx, int ty){
-		ModelRendererTurbo model = new ModelRendererTurbo(base, get(texturex, obj, idef), get(texturey, obj, idef), tx, ty);
+	public final static ModelRendererTurbo parse(Object base, JsonMap map, int tx, int ty){
+		ModelRendererTurbo model = new ModelRendererTurbo(base, get(texturex, map, idef), get(texturey, map, idef), tx, ty);
 		//
-		float x = get(offx, obj, def);
-		float y = get(offy, obj, def);
-		float z = get(offz, obj, def);
-		int w = get(width, obj, idef);
-		int h = get(height, obj, idef);
-		int d = get(depth, obj, idef);
+		float x = get(offx, map, def);
+		float y = get(offy, map, def);
+		float z = get(offz, map, def);
+		int w = get(width, map, idef);
+		int h = get(height, map, idef);
+		int d = get(depth, map, idef);
 		//
-		switch(obj.get("type").getAsString()){
+		switch(map.get("type").string_value()){
 			case "box": case "cube": case "b": {
-				model.addBox(x, y, z, w, h, d, get(expansion, obj, def));
+				model.addBox(x, y, z, w, h, d, get(expansion, map, def));
 				break;
 			}
 			case "shapebox": case "sbox": case "sb": {
-				model.addShapeBox(x, y, z, w, h, d, get(scale, obj, def),
-						get("x0", obj, def), get("y0", obj, def), get("z0", obj, def),
-						get("x1", obj, def), get("y1", obj, def), get("z1", obj, def),
-						get("x2", obj, def), get("y2", obj, def), get("z2", obj, def),
-						get("x3", obj, def), get("y3", obj, def), get("z3", obj, def),
-						get("x4", obj, def), get("y4", obj, def), get("z4", obj, def),
-						get("x5", obj, def), get("y5", obj, def), get("z5", obj, def),
-						get("x6", obj, def), get("y6", obj, def), get("z6", obj, def),
-						get("x7", obj, def), get("y7", obj, def), get("z7", obj, def)
+				model.addShapeBox(x, y, z, w, h, d, get(scale, map, def),
+						get("x0", map, def), get("y0", map, def), get("z0", map, def),
+						get("x1", map, def), get("y1", map, def), get("z1", map, def),
+						get("x2", map, def), get("y2", map, def), get("z2", map, def),
+						get("x3", map, def), get("y3", map, def), get("z3", map, def),
+						get("x4", map, def), get("y4", map, def), get("z4", map, def),
+						get("x5", map, def), get("y5", map, def), get("z5", map, def),
+						get("x6", map, def), get("y6", map, def), get("z6", map, def),
+						get("x7", map, def), get("y7", map, def), get("z7", map, def)
 					);
 				break;
 			}
 			case "cylinder": case "cyl": case "c": {
-				Vec3f offset = null; float tox = get(topoffx, obj, 0f), toy = get(topoffy, obj, 0f), toz = get(topoffz, obj, 0f);
-				if(tox != 0f && toy != 0f && toz != 0f) offset = new Vec3f(tox, toy, toz); float rad2 = get(radius, obj, 0f);
+				Vec3f offset = null; float tox = get(topoffx, map, 0f), toy = get(topoffy, map, 0f), toz = get(topoffz, map, 0f);
+				if(tox != 0f && toy != 0f && toz != 0f) offset = new Vec3f(tox, toy, toz); float rad2 = get(radius, map, 0f);
 				if(rad2 == 0f){
-					model.addCylinder(x, y, z, get(radius, obj, 1f), get(length, obj, 1f), get(segments, obj, 16), get(basescale, obj, 1f), get(topscale, obj, 1f), get(direction, obj, 4), offset);
+					model.addCylinder(x, y, z, get(radius, map, 1f), get(length, map, 1f), get(segments, map, 16), get(basescale, map, 1f), get(topscale, map, 1f), get(direction, map, 4), offset);
 				}
 				else{
-					model.addHollowCylinder(x, y, z, get(radius, obj, 1f), rad2, get(length, obj, 1f), get(segments, obj, 16),
-						get(seglimit, obj, 16), get(basescale, obj, 1f), get(topscale, obj, 1f), get(direction, obj, 4), offset);
+					model.addHollowCylinder(x, y, z, get(radius, map, 1f), rad2, get(length, map, 1f), get(segments, map, 16),
+						get(seglimit, map, 16), get(basescale, map, 1f), get(topscale, map, 1f), get(direction, map, 4), offset);
 				}
 				break;
 			}
 			case "cone": case "cn": {
-				model.addCone(x, y, z, get(radius, obj, 1f), get(length, obj, 1f), get(segments, obj, 12), get(basescale, obj, 1f), get(direction, obj, 4));
+				model.addCone(x, y, z, get(radius, map, 1f), get(length, map, 1f), get(segments, map, 12), get(basescale, map, 1f), get(direction, map, 4));
 				break;
 			}
 			case "obj":{
-				if(!obj.has("location")){
+				if(!map.has("location")){
 					model.addSphere(x, y, z, 16, 16, 16, 16, 16);
 					model.textured = false; //"error model"
 				}
 				else{
-					String str = obj.get("location").getAsString();
+					String str = map.get("location").string_value();
 					model.addObj(Static.getResource(str));
 				}
 			}
 		}
-		model.mirror = JsonUtil.getIfExists(obj, mirror, false);
-		model.flip = JsonUtil.getIfExists(obj, flip, false);
+		model.mirror = map.getBoolean(mirror[0], map.getBoolean(mirror[1], map.getBoolean(mirror[2], false)));
+		model.flip = map.getBoolean(flip[0], map.getBoolean(flip[1], map.getBoolean(flip[2], false)));
 		//
-		model.rotationAngleX = get(rotx, obj, def);
-		model.rotationAngleY = get(roty, obj, def);
-		model.rotationAngleZ = get(rotz, obj, def);
+		model.rotationAngleX = get(rotx, map, def);
+		model.rotationAngleY = get(roty, map, def);
+		model.rotationAngleZ = get(rotz, map, def);
 		//
-		model.boxName = obj.has("name") ? obj.get("name").getAsString() : null;
-		model.setRotationPoint(get(posx, obj, def), get(posy, obj, def), get(posz, obj, def));
+		model.boxName = map.getString("name", null);
+		model.setRotationPoint(get(posx, map, def), get(posy, map, def), get(posz, map, def));
 		return model;
 	}
 
@@ -125,48 +123,45 @@ public class JsonToTMT {
 		if(array != null){
 			ModelRendererTurbo[] model = new ModelRendererTurbo[array.size()];
 			for(int i = 0; i < array.size(); i++){
-				model[i] = parse(base, array.get(i).getAsJsonObject(), tx, ty);
+				model[i] = parse(base, array.get(i).asMap(), tx, ty);
 			}
 			return model;
 		}
 		return new ModelRendererTurbo[0];
 	}
 
-	public final static ModelRendererTurbo[] parse(Object base, String string, JsonObject object, int tx, int ty){
+	public final static ModelRendererTurbo[] parse(Object base, String string, JsonMap map, int tx, int ty){
 		if(base == null){
 			if(Static.dev()){
 				Static.halt();
 			}
 			else{
-				Print.console("Provided Modelbase is NULL, expect errors!", object);
+				Print.console("Provided Modelbase is NULL, expect errors!", map);
 			}
 		}
-		if(object.has(string) && object.get(string).isJsonArray()){
-			return parse(base, object.get(string).getAsJsonArray(), tx, ty);
+		if(map.has(string) && map.get(string).isArray()){
+			return parse(base, map.get(string).asArray(), tx, ty);
 		}
 		return new ModelRendererTurbo[0];
 	}
 	
-	public static final float get(String s, JsonObject obj, float def){
-		if(obj.has(s)){
-			return obj.get(s).getAsFloat();
-		}
-		return def;
+	public static final float get(String s, JsonMap map, float def){
+		return map.getFloat(s, def);
 	}
 	
-	public static final float get(String[] s, JsonObject obj, float def){
+	public static final float get(String[] s, JsonMap map, float def){
 		for(String str : s){
-			if(obj.has(str)){
-				return obj.get(str).getAsFloat();
+			if(map.has(str)){
+				return map.get(str).float_value();
 			}
 		}
 		return 0;
 	}
 	
-	public static final int get(String[] s, JsonObject obj, int def){
+	public static final int get(String[] s, JsonMap map, int def){
 		for(String str : s){
-			if(obj.has(str)){
-				return obj.get(str).getAsInt();
+			if(map.has(str)){
+				return map.get(str).integer_value();
 			}
 		}
 		return 0;
