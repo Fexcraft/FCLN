@@ -159,6 +159,7 @@ public class Vec3f {
 
 	public Vec3f normalize(Vec3f dest){
 		float len = (float)length();
+        if(len == 0) return dest == null ? new Vec3f() : dest.set(0, 0, 0);
 		return dest == null ? new Vec3f(x / len, y / len, z / len) : dest.set(x / len, y / len, z / len);
 	}
 
