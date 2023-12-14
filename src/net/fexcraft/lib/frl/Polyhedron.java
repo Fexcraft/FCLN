@@ -23,7 +23,7 @@ public class Polyhedron<GL extends GLO> {
 	public float posX, posY, posZ;
 	public float texU, texV;
 	public boolean recompile, visible = true;
-	public RotationOrder rotOrder = RotationOrder.YZX;
+	public RotationOrder rotOrder = RotationOrder.YXZ;//YZX;
 	public String name;
 	public GL glObj = (GL)GLO.SUPPLIER.get();
 	public Integer glId;
