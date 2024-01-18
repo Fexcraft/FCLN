@@ -24,8 +24,8 @@ public class ScriptParser {
 
     public static final boolean LOG = true;
 
-    public static Script parse(InputStream stream){
-        Script scr = new Script();
+    public static Script parse(String scr_name, InputStream stream){
+        Script scr = new Script(scr_name);
         ISW isw = new ISW(stream);
         try{
             isw.next();
@@ -64,8 +64,8 @@ public class ScriptParser {
                     ArrayList<String> parms = new ArrayList<>();
                     int line = isw.linenum;
                     while(isw.linenum == line){
-                        String par = isw.till(',', ')');
-                        if(par.trim().length() > 0) parms.add(par);
+                        String par = isw.till(',', ')').trim();
+                        if(par.length() > 0) parms.add(par);
                     }
                     scr.actions.put(name, new ScriptAction(name, parms.toArray(new String[0])));
                     parseBlock(isw, scr, null, scr.actions.get(name));
@@ -156,9 +156,9 @@ public class ScriptParser {
         if(isw.starts('=')){
             isw.next();
             isw.skipw();
-            elm = new MapElm(!isw.till_end().trim().equals("tree"));
+            elm = new MapElm(isw.till_end().trim());
         }
-        cons.accept(key, elm == null ? new MapElm(true) : elm);
+        cons.accept(key, elm == null ? new MapElm() : elm);
     }
 
     private static void parseList(ISW isw, BiConsumer<String, ScriptElm> cons) throws IOException {
