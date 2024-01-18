@@ -65,7 +65,7 @@ public class ScriptParser {
                     int line = isw.linenum;
                     while(isw.linenum == line){
                         String par = isw.till(',', ')');
-                        if(par.length() > 0) parms.add(par);
+                        if(par.trim().length() > 0) parms.add(par);
                     }
                     scr.actions.put(name, new ScriptAction(name, parms.toArray(new String[0])));
                     parseBlock(isw, scr, null, scr.actions.get(name));
