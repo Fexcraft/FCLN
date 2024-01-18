@@ -14,12 +14,16 @@ import java.util.HashMap;
  */
 public class ScriptAction extends ScriptBlock {
 
-    public final String[] parameters;
     public final String name;
 
     public ScriptAction(String name, String... params){
-        parameters = params;
+        super(params);
         this.name = name;
+    }
+
+    @Override
+    public String print_name(){
+        return "act " + name;
     }
 
 }
