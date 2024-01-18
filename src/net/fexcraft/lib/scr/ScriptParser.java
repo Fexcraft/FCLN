@@ -13,10 +13,7 @@ import java.util.ArrayList;
 import java.util.function.BiConsumer;
 
 import net.fexcraft.lib.common.utils.Print;
-import net.fexcraft.lib.scr.elm.BoolElm;
-import net.fexcraft.lib.scr.elm.FltElm;
-import net.fexcraft.lib.scr.elm.IntElm;
-import net.fexcraft.lib.scr.elm.StrElm;
+import net.fexcraft.lib.scr.elm.*;
 
 /**
  *
@@ -52,6 +49,14 @@ public class ScriptParser {
                 }
                 if(isw.starts('b') && found(isw, "bln")){
                     parseBln(isw, (key, elm) -> scr.global.put(key, elm));
+                    continue;
+                }
+                if(isw.starts('m') && found(isw, "map")){
+                    parseMap(isw, (key, elm) -> scr.global.put(key, elm));
+                    continue;
+                }
+                if(isw.starts('l') && found(isw, "lst")){
+                    parseList(isw, (key, elm) -> scr.global.put(key, elm));
                     continue;
                 }
                 if(isw.starts('a') && found(isw, "act")){
@@ -144,6 +149,24 @@ public class ScriptParser {
         cons.accept(key, elm);
     }
 
+    private static void parseMap(ISW isw, BiConsumer<String, ScriptElm> cons) throws IOException {
+        String key = isw.till_space();
+        MapElm elm = null;
+        isw.skipw();
+        if(isw.starts('=')){
+            isw.next();
+            isw.skipw();
+            elm = new MapElm(!isw.till_end().trim().equals("tree"));
+        }
+        cons.accept(key, elm == null ? new MapElm(true) : elm);
+    }
+
+    private static void parseList(ISW isw, BiConsumer<String, ScriptElm> cons) throws IOException {
+        String key = isw.till_space();
+        isw.nextline();
+        cons.accept(key, new ListElm());
+    }
+
     private static void parseBlock(ISW isw, Script scr, ScriptBlock root, ScriptBlock block) throws IOException {
         while(isw.has()){
             int line = isw.linenum;
@@ -184,6 +207,14 @@ public class ScriptParser {
             }
             if(isw.starts('b') && found(isw, "bln")){
                 parseBln(isw, (key, elm) -> block.local.put(key, elm));
+                continue;
+            }
+            if(isw.starts('m') && found(isw, "map")){
+                parseMap(isw, (key, elm) -> block.local.put(key, elm));
+                continue;
+            }
+            if(isw.starts('l') && found(isw, "lst")){
+                parseList(isw, (key, elm) -> block.local.put(key, elm));
                 continue;
             }
             if(isw.starts('e') && found(isw, "else")){
@@ -311,7 +342,7 @@ public class ScriptParser {
             StringBuffer buffer = new StringBuffer();
             while(has && cher > ' '){
                 buffer.append(cher);
-                next();
+                if(next()) break;
             }
             return buffer.toString();
         }
