@@ -7,10 +7,10 @@ package net.fexcraft.lib.scr;
  */
 public enum ScriptElmType {
 
-    NULL, STRING, INTEGER, FLOAT, BOOLEAN, LIST, OBJ, REF;
+    NULL, STRING, INTEGER, FLOAT, BOOLEAN, LIST, MAP, OBJ, REF;
 
     public boolean primitive(){
-        return !(this == LIST || this == OBJ);
+        return !list() && !map();
     }
 
     public boolean decimal(){
@@ -33,8 +33,12 @@ public enum ScriptElmType {
         return this == REF;
     }
 
-    public boolean number(){
-        return this == INTEGER || this == FLOAT;
+    public boolean map(){
+        return this == MAP || this == OBJ;
+    }
+
+    public boolean list(){
+        return this == LIST;
     }
 
 }
