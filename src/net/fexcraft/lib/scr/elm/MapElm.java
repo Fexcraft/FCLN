@@ -6,6 +6,8 @@
 package net.fexcraft.lib.scr.elm;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 
 import net.fexcraft.lib.scr.ScriptElm;
 import net.fexcraft.lib.scr.ScriptElmType;
@@ -15,11 +17,17 @@ import net.fexcraft.lib.scr.ScriptElmType;
  * @author Ferdinand Calo' (FEX___96)
  *
  */
-public class ObjElm implements ScriptElm {
+public class MapElm implements ScriptElm {
 	
-	private HashMap<String, ScriptElm> value = new HashMap<>();
+	private Map<String, ScriptElm> value;
 
-	public ObjElm(){}
+	public MapElm(Map<String, ScriptElm> type){
+		value = type;
+	}
+
+	public MapElm(boolean hash){
+		value = hash ? new HashMap<>() : new TreeMap<>();
+	}
 
 	@Override
 	public String scr_str(){
