@@ -1,7 +1,6 @@
 package net.fexcraft.mod.uni.world;
 
 import net.fexcraft.lib.common.math.V3I;
-import net.minecraft.util.EnumFacing;
 
 import java.util.concurrent.ConcurrentHashMap;
 
