@@ -3,6 +3,7 @@ package net.fexcraft.mod.uni.ui;
 import java.util.function.Consumer;
 
 import net.fexcraft.app.json.JsonMap;
+import net.fexcraft.lib.common.math.V3I;
 import net.fexcraft.mod.uni.tag.TagCW;
 import net.fexcraft.mod.uni.world.EntityW;
 
@@ -17,7 +18,7 @@ public abstract class ContainerInterface {
 	public EntityW player;
 	public JsonMap ui_map;
 
-	public ContainerInterface(JsonMap map, EntityW ply){
+	public ContainerInterface(JsonMap map, EntityW ply, V3I pos){
 		ui_map = map;
 		player = ply;
 	}
