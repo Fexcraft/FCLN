@@ -36,7 +36,10 @@ public abstract class EntityW implements MessageSender {
 
 	public abstract void setYawPitch(float oyaw, float opitch, float yaw, float pitch);
 
+	@Deprecated
     public abstract void openUI(int ui, WorldW world, V3I pos);
+
+    public abstract void openUI(String id, WorldW world, V3I pos);
 
     public abstract String getName();
 }
