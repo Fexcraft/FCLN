@@ -2,8 +2,6 @@ package net.fexcraft.mod.uni.world;
 
 import net.fexcraft.lib.common.math.V3D;
 import net.fexcraft.lib.common.math.V3I;
-import net.fexcraft.mod.fvtm.data.block.BlockEntity;
-import net.minecraft.world.World;
 
 /**
  * @author Ferdinand Calo' (FEX___96)
@@ -14,7 +12,7 @@ public abstract class WorldW {
 
     public abstract boolean isTilePresent(V3I pos);
 
-    public abstract BlockEntity getBlockEntity(V3I pos);
+    public abstract Object getBlockEntity(V3I pos);
 
     public abstract <W> W local();
 
