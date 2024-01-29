@@ -1,8 +1,5 @@
 package net.fexcraft.mod.uni.world;
 
-import net.minecraft.block.properties.PropertyDirection;
-import net.minecraft.util.EnumFacing;
-
 import java.util.function.Function;
 
 /**
