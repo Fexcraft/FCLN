@@ -1,8 +1,5 @@
 package net.fexcraft.mod.uni.world;
 
-import net.fexcraft.mod.fvtm.FvtmLogger;
-import net.fexcraft.mod.uni.EnvInfo;
-
 /**
  * @author Ferdinand Calo' (FEX___96)
  */
@@ -14,7 +11,7 @@ public interface MessageSender {
 
 	public void dismount();
 
-	public static final MessageSender LOG = new MessageSender(){
+	/*public static final MessageSender LOG = new MessageSender(){
 
 		@Override
 		public void send(String s){
@@ -67,6 +64,6 @@ public interface MessageSender {
 			//
 		}
 
-	};
+	};*/
 
 }
