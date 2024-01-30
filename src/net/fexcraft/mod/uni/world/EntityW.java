@@ -39,7 +39,7 @@ public abstract class EntityW implements MessageSender {
 	@Deprecated
     public abstract void openUI(int ui, WorldW world, V3I pos);
 
-    public abstract void openUI(String id, WorldW world, V3I pos);
+    public abstract void openUI(String id, V3I pos);
 
     public abstract String getName();
 }
