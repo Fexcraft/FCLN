@@ -28,4 +28,8 @@ public class UniReg {
 		return true;
 	}
 
+	public static int getUIID(String id){
+		return 0;
+	}
+
 }
