@@ -21,6 +21,7 @@ public abstract class UserInterface {
 	public LinkedHashMap<String, UIField> fields = new LinkedHashMap<>();
 	public LinkedHashMap<String, UITab> tabs = new LinkedHashMap<>();
 	public boolean background;
+	public String returnto;
 	public int width;
 	public int height;
 	public int _fields;
@@ -61,6 +62,7 @@ public abstract class UserInterface {
 		JsonArray arr = map.getArray("size");
 		width = arr.get(0).integer_value();
 		height = arr.get(1).integer_value();
+		returnto = map.getString("return", null);
 		if(OI != null) OI.accept(this);
 	}
 
