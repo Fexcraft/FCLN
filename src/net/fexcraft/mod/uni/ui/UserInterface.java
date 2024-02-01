@@ -1,12 +1,13 @@
 package net.fexcraft.mod.uni.ui;
 
-import java.util.LinkedHashMap;
-import java.util.Map.Entry;
-import java.util.function.Consumer;
-
 import net.fexcraft.app.json.JsonArray;
 import net.fexcraft.app.json.JsonMap;
 import net.fexcraft.app.json.JsonValue;
+
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.function.Consumer;
 
 /**
  * @author Ferdinand Calo' (FEX___96)
@@ -81,6 +82,8 @@ public abstract class UserInterface {
 	public abstract boolean onAction(UIButton button, String id, int l, int t, int x, int y, int b);
 
 	public abstract boolean onScroll(UIButton button, String id, int gl, int gt, int mx, int my, int am);
+
+	public void getTooltip(int gl, int gt, int mx, int my, List<String> list){}
 
 	public abstract void predraw(float ticks, int mx, int my);
 
