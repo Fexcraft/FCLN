@@ -15,6 +15,7 @@ public abstract class ContainerInterface {
 	public Consumer<TagCW> SEND_TO_CLIENT;
 	public Consumer<TagCW> SEND_TO_SERVER;
 	protected UserInterface ui;//client side only
+	public String uiid;
 	public EntityW player;
 	public JsonMap ui_map;
 	public V3I pos;
@@ -24,6 +25,8 @@ public abstract class ContainerInterface {
 		player = ply;
 		this.pos = pos;
 	}
+
+	public void init(){}
 
 	public abstract Object get(String key, Object... objs);
 
