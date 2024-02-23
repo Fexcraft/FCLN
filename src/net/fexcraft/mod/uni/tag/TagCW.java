@@ -71,6 +71,7 @@ public interface TagCW {
 	}
 
 	public static TagCW wrap(Object com){
+		if(com instanceof TagCW) return (TagCW)com;
 		return WRAPPER[0].apply(com);
 	}
 
