@@ -42,4 +42,5 @@ public abstract class EntityW implements MessageSender {
     public abstract void openUI(String id, V3I pos);
 
     public abstract String getName();
+
 }
