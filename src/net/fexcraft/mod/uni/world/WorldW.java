@@ -22,4 +22,6 @@ public abstract class WorldW {
 
     public abstract void spawnBlockSeat(V3D add, EntityW player);
 
+	public abstract int dim();
+
 }
