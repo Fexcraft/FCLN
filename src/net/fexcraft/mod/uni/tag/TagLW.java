@@ -1,11 +1,13 @@
 package net.fexcraft.mod.uni.tag;
 
+import java.util.Iterator;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 /**
  * @author Ferdinand Calo' (FEX___96)
  */
-public interface TagLW {
+public interface TagLW extends Iterable<TagCW> {
 
 	public String getString(int idx);
 
