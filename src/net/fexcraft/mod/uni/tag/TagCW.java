@@ -33,6 +33,10 @@ public interface TagCW {
 		return new V3D(list.getDouble(0), list.getDouble(1), list.getDouble(2));
 	}
 
+	public int[] getIntArray(String key);
+
+	public byte[] getByteArray(String key);
+
 	public boolean has(String key);
 
 	public void set(String key, String val);
@@ -50,6 +54,10 @@ public interface TagCW {
 	public void set(String key, TagCW val);
 
 	public void set(String key, TagLW val);
+
+	public void set(String key, int[] val);
+
+	public void set(String key, byte[] val);
 
 	public default void set(String key, V3D vec){
 		TagLW list = TagLW.create();
