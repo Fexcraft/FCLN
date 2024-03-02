@@ -2,6 +2,7 @@ package net.fexcraft.mod.uni.world;
 
 import net.fexcraft.lib.common.math.V3D;
 import net.fexcraft.lib.common.math.V3I;
+import net.fexcraft.mod.uni.item.StackWrapper;
 
 /**
  * @author Ferdinand Calo' (FEX___96)
@@ -42,5 +43,7 @@ public abstract class EntityW implements MessageSender {
     public abstract void openUI(String id, V3I pos);
 
     public abstract String getName();
+
+	public abstract void drop(StackWrapper stack, float height);
 
 }
