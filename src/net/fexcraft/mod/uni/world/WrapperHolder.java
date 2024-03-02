@@ -38,10 +38,16 @@ public abstract class WrapperHolder {
 
 	public abstract V3I getPos0(Object o);
 
-	public static BlockSide getSide(Object o){
+	public static CubeSide getSide(Object o){
 		return INSTANCE.getSide0(o);
 	}
 
-	public abstract BlockSide getSide0(Object o);
+	public abstract CubeSide getSide0(Object o);
+
+	public static <S> S getLocalSide(CubeSide side){
+		return INSTANCE.getLocalSide0(side);
+	}
+
+	public abstract <S> S getLocalSide0(CubeSide side);
 
 }
