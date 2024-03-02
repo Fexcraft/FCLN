@@ -2,6 +2,7 @@ package net.fexcraft.mod.uni.world;
 
 import net.fexcraft.lib.common.math.V3D;
 import net.fexcraft.lib.common.math.V3I;
+import net.fexcraft.mod.uni.item.StackWrapper;
 
 /**
  * @author Ferdinand Calo' (FEX___96)
@@ -23,5 +24,7 @@ public abstract class WorldW {
     public abstract void spawnBlockSeat(V3D add, EntityW player);
 
 	public abstract int dim();
+
+	public abstract void drop(StackWrapper stack, V3D vec);
 
 }
