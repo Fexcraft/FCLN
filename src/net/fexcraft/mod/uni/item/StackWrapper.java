@@ -1,7 +1,11 @@
 package net.fexcraft.mod.uni.item;
 
 import net.fexcraft.mod.uni.tag.TagCW;
+import net.minecraft.item.ItemStack;
 
+/**
+ * @author Ferdinand Calo' (FEX___96)
+ */
 public abstract class StackWrapper {
 
 	public static StackWrapper EMPTY = null;
@@ -25,4 +29,19 @@ public abstract class StackWrapper {
 		return item;
 	}
 
+	public abstract String getName();
+
+	public abstract int maxsize();
+
+	public abstract int damage();
+
+	public abstract int count();
+
+	public abstract void count(int am);
+
+	public abstract StackWrapper copy();
+
+	public abstract void save(TagCW com);
+
+	public abstract boolean empty();
 }
