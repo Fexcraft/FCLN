@@ -145,4 +145,14 @@ public class V3I {
 		return new V3I(x, y, z);
 	}
 
+	public V3I rotate(int times){
+		if(times > 3) times = times % 4;
+		switch(times){
+			case 1: return new V3I(-z, y, x);
+			case 2: return new V3I(-x, y, -z);
+			case 3: return new V3I(z, y, -x);
+		}
+		return this;
+	}
+
 }
