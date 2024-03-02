@@ -43,4 +43,6 @@ public interface TagLW extends Iterable<TagCW> {
 
 	public abstract Object direct();
 
+	public abstract boolean empty();
+
 }
