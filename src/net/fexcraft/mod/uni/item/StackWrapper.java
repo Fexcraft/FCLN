@@ -44,4 +44,7 @@ public abstract class StackWrapper {
 	public abstract void save(TagCW com);
 
 	public abstract boolean empty();
+
+	public abstract void createTagIfMissing();
+
 }
