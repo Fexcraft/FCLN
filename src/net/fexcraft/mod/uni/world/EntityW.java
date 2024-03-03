@@ -37,9 +37,6 @@ public abstract class EntityW implements MessageSender {
 
 	public abstract void setYawPitch(float oyaw, float opitch, float yaw, float pitch);
 
-	/** @param key net.fexcraft.mod.fvtm.ui.UIKey expected, FVTM specific */
-    public abstract void openUI(Object key, V3I pos);
-
     public abstract void openUI(String id, V3I pos);
 
     public abstract String getName();
