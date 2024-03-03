@@ -1,7 +1,6 @@
 package net.fexcraft.mod.uni.item;
 
 import net.fexcraft.mod.uni.tag.TagCW;
-import net.minecraft.item.ItemStack;
 
 /**
  * @author Ferdinand Calo' (FEX___96)
