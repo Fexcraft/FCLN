@@ -46,4 +46,8 @@ public class UIText extends UIElement {
 		value = newval;
 	}
 
+	public String value(){
+		return value;
+	}
+
 }
