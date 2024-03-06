@@ -3,6 +3,7 @@ package net.fexcraft.mod.uni.ui;
 import net.fexcraft.app.json.JsonArray;
 import net.fexcraft.app.json.JsonMap;
 import net.fexcraft.app.json.JsonValue;
+import net.fexcraft.mod.uni.IDL;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.function.Consumer;
 /**
  * @author Ferdinand Calo' (FEX___96)
  */
-public abstract class UserInterface {
+public class UserInterface {
 
 	public static Consumer<UserInterface> OI = null;
 	public ContainerInterface container;
@@ -22,11 +23,14 @@ public abstract class UserInterface {
 	public LinkedHashMap<String, UITab> tabs = new LinkedHashMap<>();
 	public boolean background;
 	public String returnto;
+	public Drawer drawer;
 	public int width;
 	public int height;
 	public int _fields;
 	public int screen_width;
 	public int screen_height;
+	public int gLeft;
+	public int gTop;
 	public Object root;
 
 	public UserInterface(JsonMap map, ContainerInterface container) throws Exception {
@@ -66,31 +70,49 @@ public abstract class UserInterface {
 		if(OI != null) OI.accept(this);
 	}
 
-	public boolean onClick(int gl, int gt, int mx, int my, int mb){
+	public boolean onClick(int mx, int my, int mb){
 		UIButton button = null;
 		for(Entry<String, UIButton> entry : buttons.entrySet()){
 			button = entry.getValue();
 			if(!button.visible || !button.enabled) continue;
-			if(!button.hovered(gl, gt, mx, my)) continue;
-			return button.onclick(gl, gt, mx, my, mb) || onAction(button, entry.getKey(), gl, gt, mx, my, mb);
+			if(!button.hovered(gLeft, gTop, mx, my)) continue;
+			return button.onclick(gLeft, gTop, mx, my, mb) || onAction(button, entry.getKey(), mx, my, mb);
 		}
 		for(UIField field : fields.values()){
 			if(!field.visible() /*|| !field.enabled()*/) continue;
-			if(field.hovered(gl, gt, mx, my) && field.onclick(mx, my, mb)) return true;
+			if(field.hovered(gLeft, gTop, mx, my) && field.onclick(mx, my, mb)) return true;
 		}
 		return false;
 	}
 
-	public abstract boolean onAction(UIButton button, String id, int l, int t, int x, int y, int b);
+	public boolean onAction(UIButton button, String id, int x, int y, int b){
+		return false;
+	}
 
-	public abstract boolean onScroll(UIButton button, String id, int gl, int gt, int mx, int my, int am);
+	public boolean onScroll(UIButton button, String id, int mx, int my, int am){
+		return false;
+	}
 
-	public void getTooltip(int gl, int gt, int mx, int my, List<String> list){}
+	public void getTooltip(int mx, int my, List<String> list){}
 
-	public abstract void predraw(float ticks, int mx, int my);
+	public void predraw(float ticks, int mx, int my){}
 
-	public abstract void postdraw(float ticks, int mx, int my);
+	public void drawbackground(float ticks, int mx, int my){}
 
-	public abstract void scrollwheel(int am, int mx, int my);
+	public void postdraw(float ticks, int mx, int my){}
+
+	public void scrollwheel(int am, int mx, int my){}
+
+	public static interface Drawer {
+
+		public void draw(int x, int y, int u, int v, int w, int h);
+
+		public void bind(IDL texture);
+
+		public default void bindTabTex(UserInterface ui, String tab){
+			bind(ui.tabs.get(tab).texture);
+		}
+
+	}
 
 }
