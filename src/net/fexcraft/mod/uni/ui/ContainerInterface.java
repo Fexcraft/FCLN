@@ -10,7 +10,7 @@ import java.util.function.Consumer;
 /**
  * @author Ferdinand Calo' (FEX___96)
  */
-public abstract class ContainerInterface {
+public class ContainerInterface {
 
 	public Consumer<TagCW> SEND_TO_CLIENT;
 	public Consumer<TagCW> SEND_TO_SERVER;
@@ -28,15 +28,17 @@ public abstract class ContainerInterface {
 
 	public void init(){}
 
-	public abstract Object get(String key, Object... objs);
+	public Object get(String key, Object... objs){
+		return null;
+	}
 
-	public abstract void packet(TagCW com, boolean client);
+	public void packet(TagCW com, boolean client){}
 
 	public ContainerInterface set(UserInterface ui){
 		this.ui = ui;
 		return this;
 	}
 
-	public abstract void onClosed();
+	public void onClosed(){}
 
 }
