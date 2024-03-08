@@ -41,4 +41,6 @@ public class ContainerInterface {
 
 	public void onClosed(){}
 
+	public void update(Object localcon){}
+
 }
