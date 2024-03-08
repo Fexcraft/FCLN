@@ -20,6 +20,7 @@ public class UserInterface {
 	public LinkedHashMap<String, UIText> texts = new LinkedHashMap<>();
 	public LinkedHashMap<String, UIButton> buttons = new LinkedHashMap<>();
 	public LinkedHashMap<String, UIField> fields = new LinkedHashMap<>();
+	public LinkedHashMap<String, UISlot> slots = new LinkedHashMap<>();
 	public LinkedHashMap<String, UITab> tabs = new LinkedHashMap<>();
 	public boolean background;
 	public String returnto;
@@ -37,22 +38,27 @@ public class UserInterface {
 		this.container = container.set(this);
 		if(map.has("texts")){
 			for(Entry<String, JsonValue<?>> entry : map.getMap("texts").entries()){
-				texts.put(entry.getKey(), UIText.IMPLEMENTATION.getConstructor(UserInterface.class, JsonMap.class).newInstance(this, entry.getValue()));
+				texts.put(entry.getKey(), UIText.IMPLEMENTATION.getConstructor(UserInterface.class, JsonMap.class).newInstance(this, entry.getValue().asMap()));
 			}
 		}
 		if(map.has("buttons")){
 			for(Entry<String, JsonValue<?>> entry : map.getMap("buttons").entries()){
-				buttons.put(entry.getKey(), UIButton.IMPLEMENTATION.getConstructor(UserInterface.class, JsonMap.class).newInstance(this, entry.getValue()));
+				buttons.put(entry.getKey(), UIButton.IMPLEMENTATION.getConstructor(UserInterface.class, JsonMap.class).newInstance(this, entry.getValue().asMap()));
 			}
 		}
 		if(map.has("fields")){
 			for(Entry<String, JsonValue<?>> entry : map.getMap("fields").entries()){
-				fields.put(entry.getKey(), UIField.IMPLEMENTATION.getConstructor(UserInterface.class, JsonMap.class).newInstance(this, entry.getValue()));
+				fields.put(entry.getKey(), UIField.IMPLEMENTATION.getConstructor(UserInterface.class, JsonMap.class).newInstance(this, entry.getValue().asMap()));
+			}
+		}
+		if(map.has("slots")){
+			for(Entry<String, JsonValue<?>> entry : map.getMap("slots").entries()){
+				slots.put(entry.getKey(), new UISlot(this, entry.getValue().asMap()));
 			}
 		}
 		if(map.has("tabs")){
 			for(Entry<String, JsonValue<?>> entry : map.getMap("tabs").entries()){
-				tabs.put(entry.getKey(), UITab.IMPLEMENTATION.getConstructor(UserInterface.class, JsonMap.class).newInstance(this, entry.getValue()));
+				tabs.put(entry.getKey(), UITab.IMPLEMENTATION.getConstructor(UserInterface.class, JsonMap.class).newInstance(this, entry.getValue().asMap()));
 			}
 		}
 		else{
@@ -60,6 +66,7 @@ public class UserInterface {
 			main.texts.putAll(texts);
 			main.buttons.putAll(buttons);
 			main.fields.putAll(fields);
+			main.slots.putAll(slots);
 			tabs.put("main", main);
 		}
 		background = map.getBoolean("background", true);
