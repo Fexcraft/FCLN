@@ -34,7 +34,8 @@ public abstract class UIElement {
 			otx = tx = arr.get(0).integer_value();
 			oty = ty = arr.get(1).integer_value();
 		}
-		arr = map.getArray("size");
+		boolean slot = this instanceof UISlot;
+		arr = map.has("size") ? map.getArray("size") : new JsonArray(slot ? 18 : 10, slot? 18 : 10);
 		owidth = width = arr.get(0).integer_value();
 		oheight = height = arr.get(1).integer_value();
 		visible = map.getBoolean("visible", true);
