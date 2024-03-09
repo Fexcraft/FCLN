@@ -14,7 +14,7 @@ public class ContainerInterface {
 
 	public Consumer<TagCW> SEND_TO_CLIENT;
 	public Consumer<TagCW> SEND_TO_SERVER;
-	protected UserInterface ui;//client side only
+	public UserInterface ui;//client side only
 	public String uiid;
 	public EntityW player;
 	public JsonMap ui_map;
@@ -39,7 +39,7 @@ public class ContainerInterface {
 		return this;
 	}
 
-	public void onClosed(){}
+	public void onClosed(EntityW player){}
 
 	public void update(Object localcon){}
 
