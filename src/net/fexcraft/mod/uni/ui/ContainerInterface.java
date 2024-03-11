@@ -39,7 +39,7 @@ public class ContainerInterface {
 		return this;
 	}
 
-	public void onClosed(EntityW player){}
+	public void onClosed(){}
 
 	public void update(Object localcon){}
 
