@@ -7,6 +7,8 @@ public interface MessageSender {
 
 	public void send(String s);
 
+	public void send(String str, Object... args);
+
 	public void bar(String s);
 
 	public void dismount();
