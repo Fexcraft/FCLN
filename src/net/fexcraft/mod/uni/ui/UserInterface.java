@@ -3,6 +3,7 @@ package net.fexcraft.mod.uni.ui;
 import net.fexcraft.app.json.JsonArray;
 import net.fexcraft.app.json.JsonMap;
 import net.fexcraft.app.json.JsonValue;
+import net.fexcraft.lib.common.math.RGB;
 import net.fexcraft.mod.uni.IDL;
 
 import java.util.LinkedHashMap;
@@ -118,6 +119,12 @@ public class UserInterface {
 
 		public default void bindTabTex(UserInterface ui, String tab){
 			bind(ui.tabs.get(tab).texture);
+		}
+
+		public void apply(RGB color);
+
+		public default void applyWhite(){
+			apply(RGB.WHITE);
 		}
 
 	}
