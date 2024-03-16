@@ -32,6 +32,12 @@ public abstract class WrapperHolder {
 
 	public abstract WorldW getWorld0(Object o);
 
+	public static <W extends WorldW> W getClientWorld(){
+		return INSTANCE.getClientWorld0();
+	}
+
+	public abstract <W extends WorldW> W getClientWorld0();
+
 	public static V3I getPos(Object obj){
 		return INSTANCE.getPos0(obj);
 	}
@@ -49,5 +55,7 @@ public abstract class WrapperHolder {
 	}
 
 	public abstract <S> S getLocalSide0(CubeSide side);
+
+	public abstract void reset();
 
 }
