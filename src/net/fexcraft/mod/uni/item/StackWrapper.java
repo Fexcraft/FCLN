@@ -46,4 +46,6 @@ public abstract class StackWrapper {
 
 	public abstract void createTagIfMissing();
 
+	public abstract boolean isItemOf(ItemType type);
+
 }
