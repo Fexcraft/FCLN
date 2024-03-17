@@ -2,12 +2,15 @@ package net.fexcraft.mod.uni.item;
 
 import net.fexcraft.mod.uni.tag.TagCW;
 
+import java.util.function.Function;
+
 /**
  * @author Ferdinand Calo' (FEX___96)
  */
 public abstract class StackWrapper {
 
 	public static StackWrapper EMPTY = null;
+	public static Function<Object, StackWrapper> SUPPLIER = null;
 	protected ItemWrapper item;
 
 	public StackWrapper(ItemWrapper item){
@@ -50,5 +53,10 @@ public abstract class StackWrapper {
 
 	/** FVTM specific. */
 	public abstract <C> C getContent(Object contenttype);
+
+	/** For ItemWrapper or ItemStacks. */
+	public static StackWrapper wrap(Object obj){
+		return SUPPLIER.apply(obj);
+	}
 
 }
