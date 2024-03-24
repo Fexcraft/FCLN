@@ -5,6 +5,7 @@ import net.fexcraft.lib.common.math.V3I;
 import net.fexcraft.mod.uni.tag.TagCW;
 import net.fexcraft.mod.uni.world.EntityW;
 
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 /**
@@ -12,8 +13,8 @@ import java.util.function.Consumer;
  */
 public class ContainerInterface {
 
-	public Consumer<TagCW> SEND_TO_CLIENT;
-	public Consumer<TagCW> SEND_TO_SERVER;
+	public static BiConsumer<TagCW, EntityW> SEND_TO_CLIENT;
+	public static Consumer<TagCW> SEND_TO_SERVER;
 	public UserInterface ui;//client side only
 	public String uiid;
 	public EntityW player;
