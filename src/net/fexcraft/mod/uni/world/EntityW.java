@@ -7,40 +7,40 @@ import net.fexcraft.mod.uni.item.StackWrapper;
 /**
  * @author Ferdinand Calo' (FEX___96)
  */
-public abstract class EntityW implements MessageSender {
+public interface EntityW extends MessageSender {
 
-	public abstract boolean isOnClient();
+	public boolean isOnClient();
 
-	public abstract int getId();
+	public int getId();
 
-	public abstract WorldW getWorld();
+	public WorldW getWorld();
 
-	public abstract boolean isPlayer();
+	public boolean isPlayer();
 
-	public abstract boolean isAnimal();
+	public boolean isAnimal();
 
-	public abstract boolean isHostile();
+	public boolean isHostile();
 
-	public abstract boolean isLiving();
+	public boolean isLiving();
 
-	public abstract boolean isRiding();
+	public boolean isRiding();
 
-	public abstract String getRegName();
+	public String getRegName();
 
-	public abstract <E> E local();
+	public <E> E local();
 
-	public abstract Object direct();
+	public Object direct();
 
-	public abstract V3D getPos();
+	public V3D getPos();
 
-	public abstract void decreaseXZMotion(double x);
+	public void decreaseXZMotion(double x);
 
-	public abstract void setYawPitch(float oyaw, float opitch, float yaw, float pitch);
+	public void setYawPitch(float oyaw, float opitch, float yaw, float pitch);
 
-    public abstract void openUI(String id, V3I pos);
+    public void openUI(String id, V3I pos);
 
-    public abstract String getName();
+    public String getName();
 
-	public abstract void drop(StackWrapper stack, float height);
+	public void drop(StackWrapper stack, float height);
 
 }
