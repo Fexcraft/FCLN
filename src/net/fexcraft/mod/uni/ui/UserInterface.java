@@ -5,6 +5,7 @@ import net.fexcraft.app.json.JsonMap;
 import net.fexcraft.app.json.JsonValue;
 import net.fexcraft.lib.common.math.RGB;
 import net.fexcraft.mod.uni.IDL;
+import net.fexcraft.mod.uni.item.StackWrapper;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -115,6 +116,8 @@ public class UserInterface {
 
 		public void draw(int x, int y, int u, int v, int w, int h);
 
+		public void draw(int x, int y, StackWrapper stack);
+
 		public void bind(IDL texture);
 
 		public default void bindTabTex(UserInterface ui, String tab){
@@ -126,7 +129,6 @@ public class UserInterface {
 		public default void applyWhite(){
 			apply(RGB.WHITE);
 		}
-
 	}
 
 }
