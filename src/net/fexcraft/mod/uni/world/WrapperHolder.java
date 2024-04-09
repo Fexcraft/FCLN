@@ -2,6 +2,8 @@ package net.fexcraft.mod.uni.world;
 
 import net.fexcraft.lib.common.math.V3I;
 
+import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -55,6 +57,12 @@ public abstract class WrapperHolder {
 	}
 
 	public abstract <S> S getLocalSide0(CubeSide side);
+
+	public static List<UUID> getOnlinePlayerIDs(){
+		return INSTANCE.getOnlinePlayerIDs0();
+	}
+
+	public abstract List<UUID> getOnlinePlayerIDs0();
 
 	public abstract void reset();
 
