@@ -43,4 +43,6 @@ public interface EntityW extends MessageSender {
 
 	public void drop(StackWrapper stack, float height);
 
+	public boolean isCreative();
+
 }
