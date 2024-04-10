@@ -49,4 +49,8 @@ public interface EntityW extends MessageSender {
 
 	public UUID getUUID();
 
+	public StackWrapper getHeldItem(boolean main);
+
+	public void closeUI();
+
 }
