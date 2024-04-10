@@ -93,4 +93,6 @@ public interface TagCW {
 
 	public TagCW copy();
 
+	public void rem(String key);
+
 }
