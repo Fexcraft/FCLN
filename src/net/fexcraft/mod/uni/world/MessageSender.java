@@ -11,6 +11,8 @@ public interface MessageSender {
 
 	public void bar(String s);
 
+	public void bar(String str, Object... args);
+
 	public void dismount();
 
 }
