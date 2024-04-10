@@ -91,4 +91,6 @@ public interface TagCW {
 
 	public Collection<String> keys();
 
+	public TagCW copy();
+
 }
