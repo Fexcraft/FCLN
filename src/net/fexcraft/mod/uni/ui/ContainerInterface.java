@@ -6,7 +6,9 @@ import net.fexcraft.mod.uni.tag.TagCW;
 import net.fexcraft.mod.uni.world.EntityW;
 
 import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 /**
  * @author Ferdinand Calo' (FEX___96)
@@ -15,6 +17,8 @@ public class ContainerInterface {
 
 	public static BiConsumer<TagCW, EntityW> SEND_TO_CLIENT;
 	public static Consumer<TagCW> SEND_TO_SERVER;
+	public static Function<String, String> TRANSLATOR;
+	public static BiFunction<String, Object[], String> TRANSFORMAT;
 	public UserInterface ui;//client side only
 	public String uiid;
 	public EntityW player;
