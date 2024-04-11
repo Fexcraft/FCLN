@@ -1,5 +1,6 @@
 package net.fexcraft.mod.uni.item;
 
+import net.fexcraft.mod.uni.IDL;
 import net.fexcraft.mod.uni.tag.TagCW;
 
 import java.util.function.Function;
@@ -58,5 +59,9 @@ public abstract class StackWrapper {
 	public static StackWrapper wrap(Object obj){
 		return SUPPLIER.apply(obj);
 	}
+
+	public abstract IDL getIDL();
+
+	public abstract String getID();
 
 }
