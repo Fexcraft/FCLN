@@ -20,6 +20,7 @@ public class ContainerInterface {
 	public static Function<String, String> TRANSLATOR;
 	public static BiFunction<String, Object[], String> TRANSFORMAT;
 	public UserInterface ui;//client side only
+	public Object root;
 	public String uiid;
 	public EntityW player;
 	public JsonMap ui_map;
