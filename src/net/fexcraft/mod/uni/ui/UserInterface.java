@@ -114,7 +114,7 @@ public class UserInterface {
 
 	public static interface Drawer {
 
-		public void draw(int x, int y, int u, int v, int w, int h);
+		public void draw(float x, float y, int u, int v, int w, int h);
 
 		public void draw(int x, int y, StackWrapper stack);
 
