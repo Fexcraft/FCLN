@@ -9,6 +9,7 @@ import java.util.function.Function;
  */
 public abstract class StateWrapper {
 
+    public static StateWrapper DEFAULT = null;
     public static Function<Object, StateWrapper> GETTER = null;
     public static Function<StackWrapper, StateWrapper> STACK_GETTER = null;
 
