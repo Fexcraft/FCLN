@@ -19,6 +19,10 @@ public abstract class WorldW {
 
     public abstract Object direct();
 
+    public void setBlockState(V3I pos, StateWrapper state){
+		setBlockState(pos, state, 3);
+	}
+
     public abstract void setBlockState(V3I pos, StateWrapper state, int flag);
 
     public abstract void spawnBlockSeat(V3D add, EntityW player);
@@ -26,5 +30,7 @@ public abstract class WorldW {
 	public abstract int dim();
 
 	public abstract void drop(StackWrapper stack, V3D vec);
+
+	public abstract StateWrapper getStateAt(V3I pos);
 
 }
