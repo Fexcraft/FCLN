@@ -112,6 +112,10 @@ public class UserInterface {
 
 	public void scrollwheel(int am, int mx, int my){}
 
+	public boolean keytyped(char c, int code){
+		return false;
+	}
+
 	public static interface Drawer {
 
 		public void draw(float x, float y, int u, int v, int w, int h);
