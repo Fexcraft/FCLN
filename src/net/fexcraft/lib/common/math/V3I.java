@@ -124,8 +124,10 @@ public class V3I {
 		return normalize(null);
 	}
 
-	private V3I set(int dx, int dy, int dz){
-		x = dx; y = dy; z = dz;
+	public V3I set(int nx, int ny, int nz){
+		x = nx;
+		y = ny;
+		z = nz;
 		return this;
 	}
 
