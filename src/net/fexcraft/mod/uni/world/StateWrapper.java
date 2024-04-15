@@ -1,5 +1,7 @@
 package net.fexcraft.mod.uni.world;
 
+import net.fexcraft.mod.uni.item.StackWrapper;
+
 import java.util.function.Function;
 
 /**
@@ -8,6 +10,7 @@ import java.util.function.Function;
 public abstract class StateWrapper {
 
     public static Function<Object, StateWrapper> GETTER = null;
+    public static Function<StackWrapper, StateWrapper> STACK_GETTER = null;
 
     public abstract Object getBlock();
 
