@@ -38,6 +38,8 @@ public abstract class StackWrapper {
 
 	public abstract int damage();
 
+	public abstract void damage(int val);
+
 	public abstract int count();
 
 	public abstract void count(int am);
