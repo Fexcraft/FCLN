@@ -53,4 +53,8 @@ public interface EntityW extends MessageSender {
 
 	public void closeUI();
 
+	public String dimid();
+
+	public int dim12();
+
 }
