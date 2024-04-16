@@ -157,4 +157,12 @@ public class V3I {
 		return this;
 	}
 
+	public String asString(){
+		return x + ";" + y + ";" + z;
+	}
+
+	public static V3I fromString(String str){
+		return new V3I(str.split(";"), 0);
+	}
+
 }
