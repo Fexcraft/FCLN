@@ -35,15 +35,15 @@ public class V3D {
     }
 
     public V3D(String[] array, int index){
-		x = array.length >= index ? Double.parseDouble(array[index++]) : 0;
-		y = array.length >= index ? Double.parseDouble(array[index++]) : 0;
-		z = array.length >= index ? Double.parseDouble(array[index]) : 0;
+		x = array.length > index ? Double.parseDouble(array[index++]) : 0;
+		y = array.length > index ? Double.parseDouble(array[index++]) : 0;
+		z = array.length > index ? Double.parseDouble(array[index]) : 0;
 	}
 
 	public V3D(float[] array, int index){
-		x = array.length >= index ? array[index++] : 0;
-		y = array.length >= index ? array[index++] : 0;
-		z = array.length >= index ? array[index] : 0;
+		x = array.length > index ? array[index++] : 0;
+		y = array.length > index ? array[index++] : 0;
+		z = array.length > index ? array[index] : 0;
 	}
 
 	public V3D sub(V3D vec){
