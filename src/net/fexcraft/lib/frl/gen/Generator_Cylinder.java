@@ -115,6 +115,15 @@ public class Generator_Cylinder {
 		ArrayList<Vertex> verts1 = new ArrayList<>();
 		ArrayList<Vertex> verts2 = new ArrayList<>();
 		ArrayList<Vertex> verts3 = new ArrayList<>();
+		//
+		if(map.getValue("exp", false)){
+			seg_off += segpi;
+			radius += radius - Math.cos(segpi) * radius;
+			radius2 += radius2 - Math.cos(segpi) * radius2;
+			radius3 += radius3 - Math.cos(segpi) * radius3;
+			radius4 += radius4 - Math.cos(segpi) * radius4;
+		}
+		//
 		for(int repeat = 0; repeat < 2; repeat++){//top/base faces
 			for(int index = 0; index < segments; index++){
 				double s = Math.sin(segpi * index * 2F + Static.PI + seg_off);
