@@ -54,6 +54,8 @@ public abstract class StackWrapper {
 
 	public abstract boolean isItemOf(ItemType type);
 
+	public abstract boolean isItemOfAny(ItemType... types);
+
 	/** FVTM specific. */
 	public abstract <C> C getContent(Object contenttype);
 
