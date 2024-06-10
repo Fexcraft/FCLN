@@ -20,6 +20,8 @@ public abstract class StackWrapper {
 
 	public abstract <IS> IS local();
 
+	public abstract void set(Object obj);
+
 	public abstract Object direct();
 
 	public abstract StackWrapper setTag(TagCW tag);
