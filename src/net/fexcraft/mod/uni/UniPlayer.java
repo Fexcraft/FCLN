@@ -32,6 +32,9 @@ public class UniPlayer {
 
 	public UniPlayer set(EntityW ent){
 		entity = ent;
+		for(AppData val : appended.values()){
+			val.set(this);
+		}
 		return this;
 	}
 
@@ -78,8 +81,9 @@ public class UniPlayer {
 
 		public void load(UniPlayer player, TagCW com);
 
-		public String id();
+		public void set(UniPlayer uniPlayer);
 
+		public String id();
 	}
 
 }
