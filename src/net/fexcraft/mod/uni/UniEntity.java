@@ -82,7 +82,7 @@ public class UniEntity {
 
 	public static void register(Class<? extends AppData> clazz, boolean playeronly){
 		if(playeronly){
-			if(!eclasses.contains(clazz)) eclasses.add(clazz);
+			if(!pclasses.contains(clazz)) pclasses.add(clazz);
 		}
 		else{
 			if(!eclasses.contains(clazz)) eclasses.add(clazz);
@@ -98,6 +98,7 @@ public class UniEntity {
 		public void init(UniEntity uniPlayer);
 
 		public String id();
+
 	}
 
 }
