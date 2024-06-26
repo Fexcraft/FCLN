@@ -10,15 +10,15 @@ import java.util.function.Function;
 /**
  * @author Ferdinand Calo'
  */
-public class UniPlayer {
+public class UniEntity {
 
-	public static Function<Object, UniPlayer> GETTER = null;
+	public static Function<Object, UniEntity> GETTER = null;
 	public static Function<Object, EntityW> ENTITY_GETTER = null;
-	private static HashMap<Class<? extends AppData>, AppData> appended = new HashMap<>();
 	private static ArrayList<Class<? extends AppData>> classes = new ArrayList<>();
+	private HashMap<Class<? extends AppData>, AppData> appended = new HashMap<>();
 	public EntityW entity;
 
-	public UniPlayer(){
+	public UniEntity(){
 		for(Class<? extends AppData> clazz : classes){
 			try{
 				appended.put(clazz, clazz.newInstance());
@@ -29,7 +29,7 @@ public class UniPlayer {
 		}
 	}
 
-	public UniPlayer set(Object ent){
+	public UniEntity set(Object ent){
 		entity = ENTITY_GETTER.apply(ent);
 		for(AppData val : appended.values()){
 			val.set(this);
@@ -55,7 +55,7 @@ public class UniPlayer {
 		}
 	}
 
-	public static UniPlayer get(Object playerent){
+	public static UniEntity get(Object playerent){
 		return GETTER.apply(playerent);
 	}
 
@@ -76,11 +76,11 @@ public class UniPlayer {
 
 	public static interface AppData {
 
-		public void save(UniPlayer player, TagCW com);
+		public void save(UniEntity player, TagCW com);
 
-		public void load(UniPlayer player, TagCW com);
+		public void load(UniEntity player, TagCW com);
 
-		public void set(UniPlayer uniPlayer);
+		public void set(UniEntity uniPlayer);
 
 		public String id();
 	}
