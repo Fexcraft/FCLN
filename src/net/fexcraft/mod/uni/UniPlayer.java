@@ -2,11 +2,9 @@ package net.fexcraft.mod.uni;
 
 import net.fexcraft.mod.uni.tag.TagCW;
 import net.fexcraft.mod.uni.world.EntityW;
-import scala.App;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.function.Function;
 
 /**
@@ -15,6 +13,7 @@ import java.util.function.Function;
 public class UniPlayer {
 
 	public static Function<Object, UniPlayer> GETTER = null;
+	public static Function<Object, EntityW> ENTITY_GETTER = null;
 	private static HashMap<Class<? extends AppData>, AppData> appended = new HashMap<>();
 	private static ArrayList<Class<? extends AppData>> classes = new ArrayList<>();
 	public EntityW entity;
@@ -30,8 +29,8 @@ public class UniPlayer {
 		}
 	}
 
-	public UniPlayer set(EntityW ent){
-		entity = ent;
+	public UniPlayer set(Object ent){
+		entity = ENTITY_GETTER.apply(ent);
 		for(AppData val : appended.values()){
 			val.set(this);
 		}
