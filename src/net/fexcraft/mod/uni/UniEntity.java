@@ -14,12 +14,26 @@ public class UniEntity {
 
 	public static Function<Object, UniEntity> GETTER = null;
 	public static Function<Object, EntityW> ENTITY_GETTER = null;
-	private static ArrayList<Class<? extends AppData>> classes = new ArrayList<>();
+	private static ArrayList<Class<? extends AppData>> pclasses = new ArrayList<>();
+	private static ArrayList<Class<? extends AppData>> eclasses = new ArrayList<>();
 	private HashMap<Class<? extends AppData>, AppData> appended = new HashMap<>();
 	public EntityW entity;
 
-	public UniEntity(){
-		for(Class<? extends AppData> clazz : classes){
+	public UniEntity(){}
+
+	public UniEntity set(Object ent){
+		entity = ENTITY_GETTER.apply(ent);
+		if(entity.isPlayer()){
+			for(Class<? extends AppData> clazz : pclasses){
+				try{
+					appended.put(clazz, clazz.newInstance());
+				}
+				catch(InstantiationException | IllegalAccessException e){
+					throw new RuntimeException(e);
+				}
+			}
+		}
+		for(Class<? extends AppData> clazz : eclasses){
 			try{
 				appended.put(clazz, clazz.newInstance());
 			}
@@ -27,12 +41,8 @@ public class UniEntity {
 				throw new RuntimeException(e);
 			}
 		}
-	}
-
-	public UniEntity set(Object ent){
-		entity = ENTITY_GETTER.apply(ent);
 		for(AppData val : appended.values()){
-			val.set(this);
+			val.init(this);
 		}
 		return this;
 	}
@@ -70,8 +80,13 @@ public class UniEntity {
 		return (AD)appended.get(clazz);
 	}
 
-	public static void register(Class<? extends AppData> clazz){
-		if(!classes.contains(clazz)) classes.add(clazz);
+	public static void register(Class<? extends AppData> clazz, boolean playeronly){
+		if(playeronly){
+			if(!eclasses.contains(clazz)) eclasses.add(clazz);
+		}
+		else{
+			if(!eclasses.contains(clazz)) eclasses.add(clazz);
+		}
 	}
 
 	public static interface AppData {
@@ -80,7 +95,7 @@ public class UniEntity {
 
 		public void load(UniEntity player, TagCW com);
 
-		public void set(UniEntity uniPlayer);
+		public void init(UniEntity uniPlayer);
 
 		public String id();
 	}
