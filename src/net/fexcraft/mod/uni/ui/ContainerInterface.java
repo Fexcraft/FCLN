@@ -2,6 +2,7 @@ package net.fexcraft.mod.uni.ui;
 
 import net.fexcraft.app.json.JsonMap;
 import net.fexcraft.lib.common.math.V3I;
+import net.fexcraft.mod.uni.UniEntity;
 import net.fexcraft.mod.uni.tag.TagCW;
 import net.fexcraft.mod.uni.world.EntityW;
 
@@ -15,18 +16,18 @@ import java.util.function.Function;
  */
 public class ContainerInterface {
 
-	public static BiConsumer<TagCW, EntityW> SEND_TO_CLIENT;
+	public static BiConsumer<TagCW, UniEntity> SEND_TO_CLIENT;
 	public static Consumer<TagCW> SEND_TO_SERVER;
 	public static Function<String, String> TRANSLATOR;
 	public static BiFunction<String, Object[], String> TRANSFORMAT;
 	public UserInterface ui;//client side only
 	public Object root;
 	public String uiid;
-	public EntityW player;
+	public UniEntity player;
 	public JsonMap ui_map;
 	public V3I pos;
 
-	public ContainerInterface(JsonMap map, EntityW ply, V3I pos){
+	public ContainerInterface(JsonMap map, UniEntity ply, V3I pos){
 		ui_map = map;
 		player = ply;
 		this.pos = pos;
