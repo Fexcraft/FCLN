@@ -3,6 +3,7 @@ package net.fexcraft.mod.uni.world;
 import net.fexcraft.lib.common.math.V3D;
 import net.fexcraft.lib.common.math.V3I;
 import net.fexcraft.mod.uni.item.StackWrapper;
+import net.fexcraft.mod.uni.ui.UIKey;
 
 import java.util.UUID;
 
@@ -39,9 +40,11 @@ public interface EntityW extends MessageSender {
 
 	public void setYawPitch(float oyaw, float opitch, float yaw, float pitch);
 
-    public void openUI(String id, V3I pos);
+	public void openUI(String id, V3I pos);
 
-    public String getName();
+	public void openUI(UIKey key, V3I pos);
+
+	public String getName();
 
 	public void drop(StackWrapper stack, float height);
 
