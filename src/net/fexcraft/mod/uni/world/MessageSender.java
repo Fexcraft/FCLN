@@ -15,4 +15,6 @@ public interface MessageSender {
 
 	public void dismount();
 
+	public String getName();
+
 }
