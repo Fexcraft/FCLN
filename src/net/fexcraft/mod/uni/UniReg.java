@@ -39,4 +39,8 @@ public class UniReg {
 		return INSTANCES.get(key.key.substring(0, key.key.indexOf(":")));
 	}
 
+	public static Object getInst(String mid){
+		return INSTANCES.get(mid);
+	}
+
 }
