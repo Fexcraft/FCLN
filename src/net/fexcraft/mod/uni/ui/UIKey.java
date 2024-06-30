@@ -32,6 +32,13 @@ public class UIKey {
 		return null;
 	}
 
+	public static UIKey find(String mid, int id){
+		for(UIKey key : ALLKEYS){
+			if(key.key.startsWith(mid) && key.id == id) return key;
+		}
+		return null;
+	}
+
 	public static UIKey byId(int ui){
 		for(UIKey key : ALLKEYS){
 			if(key.id == ui) return key;
