@@ -44,8 +44,6 @@ public interface EntityW extends MessageSender {
 
 	public void openUI(UIKey key, V3I pos);
 
-	public String getName();
-
 	public void drop(StackWrapper stack, float height);
 
 	public boolean isCreative();
