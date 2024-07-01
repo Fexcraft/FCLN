@@ -3,6 +3,7 @@ package net.fexcraft.mod.uni.ui;
 import net.fexcraft.app.json.JsonArray;
 import net.fexcraft.app.json.JsonMap;
 import net.fexcraft.lib.common.math.RGB;
+import net.fexcraft.lib.common.utils.Formatter;
 import net.fexcraft.mod.uni.IDL;
 import net.fexcraft.mod.uni.IDLManager;
 
@@ -32,6 +33,7 @@ public abstract class UIButton extends UIElement {
 		action = map.getString("action", null);
 		target = map.getString("target", null);
 		tooltip = map.getString("tooltip", null);
+		if(tooltip != null) tooltip = ContainerInterface.TRANSLATOR.apply(tooltip);
 		if(map.has("text")){
 			text = UIText.IMPLEMENTATION.getConstructor(UserInterface.class, JsonMap.class).newInstance(ui, map.getMap("text"));
 		}
