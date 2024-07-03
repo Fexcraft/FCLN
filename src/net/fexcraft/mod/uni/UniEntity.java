@@ -69,6 +69,10 @@ public class UniEntity {
 		return GETTER.apply(playerent);
 	}
 
+	public static EntityW getEntity(Object playerent){
+		return GETTER.apply(playerent).entity;
+	}
+
 	public <AD extends AppData> AD get(String id){
 		for(AppData val : appended.values()){
 			if(val.id().equals(id)) return (AD)val;
