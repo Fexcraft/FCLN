@@ -69,6 +69,22 @@ public abstract class ConfigBase {
 			this.base = base;
 		}
 
+		public ConfigEntry(ConfigBase base, String cat, String key, boolean def){
+			this(base, cat, key, new JsonValue(def));
+		}
+
+		public ConfigEntry(ConfigBase base, String cat, String key, String def){
+			this(base, cat, key, new JsonValue(def));
+		}
+
+		public ConfigEntry(ConfigBase base, String cat, String key, float def){
+			this(base, cat, key, new JsonValue(def));
+		}
+
+		public ConfigEntry(ConfigBase base, String cat, String key, int def){
+			this(base, cat, key, new JsonValue(def));
+		}
+
 		public ConfigEntry info(String str){
 			info = str;
 			return this;
@@ -125,7 +141,7 @@ public abstract class ConfigBase {
 		private void fill(JsonMap map){
 			JsonMap con = new JsonMap();
 			if(info != null) con.add("info", info);
-			if(min != 0 || max != 0) con.add("range", min + " ~ " + max);
+			if(min != 0 || max != 0) con.add("range", (min % 1f == 0f ? (int)min : min) + " ~ " + (max % 1f == 0f ? (int)max : max));
 			con.add("value", defval);
 			map.add(key, con);
 			base.changes = true;
