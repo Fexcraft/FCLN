@@ -2,6 +2,7 @@ package net.fexcraft.mod.uni;
 
 import net.fexcraft.app.json.*;
 import net.fexcraft.app.json.JsonHandler.PrintOption;
+import net.fexcraft.lib.common.math.RGB;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -141,7 +142,7 @@ public abstract class ConfigBase {
 		private void fill(JsonMap map){
 			JsonMap con = new JsonMap();
 			if(info != null) con.add("info", info);
-			if(min != 0 || max != 0) con.add("range", (min % 1f == 0f ? (int)min : min) + " ~ " + (max % 1f == 0f ? (int)max : max));
+			if(min != 0 || max != 0) con.add("range", RGB.df.format(min) + " ~ " + RGB.df.format(max));
 			con.add("value", defval);
 			map.add(key, con);
 			base.changes = true;
