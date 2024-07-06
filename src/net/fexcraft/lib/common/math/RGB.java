@@ -162,7 +162,7 @@ public class RGB {
 	
 	/// OTHER ///
 	
-	private static final DecimalFormat df = new DecimalFormat("##.#####");
+	public static final DecimalFormat df = new DecimalFormat("##.#####");
 	static { df.setRoundingMode(RoundingMode.DOWN); }
 	
 	public static String format(double d){
