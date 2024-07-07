@@ -63,4 +63,10 @@ public interface EntityW extends MessageSender {
 	public StackWrapper getStackAt(int idx);
 
 	public void addStack(StackWrapper stack);
+
+	public V3D getEyeVec();
+
+	public V3D getLookVec();
+
+	public boolean isShiftDown();
 }
