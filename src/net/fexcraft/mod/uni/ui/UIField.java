@@ -15,6 +15,7 @@ public class UIField extends UIElement {
 	public boolean background;
 	//public float scale;
 	public int color;
+	public int maxlength;
 
 	public UIField(UserInterface ui, JsonMap map) throws Exception {
 		super(ui, map);
@@ -24,6 +25,7 @@ public class UIField extends UIElement {
 		background = map.getBoolean("background", false);
 		color = Integer.parseInt(map.getString("color", "f0f0f0"), 16);
 		if(map.has("numberfield")) regex = "[^\\d\\-\\.\\,]";
+		maxlength = map.getInteger("max-length", 32);
 	}
 
 	public boolean onclick(int mx, int my, int mb){
