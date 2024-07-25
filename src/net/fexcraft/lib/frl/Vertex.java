@@ -41,6 +41,19 @@ public class Vertex {
 		this(vertex.vector.x, vertex.vector.y, vertex.vector.z);
 	}
 
+	public void pos(float x, float y, float z){
+		vector.x = x;
+		vector.y = y;
+		vector.z = z;
+	}
+
+	public Vertex pos(double x, double y, double z){
+		vector.x = (float)x;
+		vector.y = (float)y;
+		vector.z = (float)z;
+		return this;
+	}
+
 	public Vec3f color(){
 		return COLOR_WHITE;
 	}
