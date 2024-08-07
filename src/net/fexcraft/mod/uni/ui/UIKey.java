@@ -46,4 +46,9 @@ public class UIKey {
 		return null;
 	}
 
+	@Override
+	public String toString(){
+		return key + "/" + id;
+	}
+
 }
