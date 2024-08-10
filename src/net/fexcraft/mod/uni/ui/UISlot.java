@@ -4,6 +4,9 @@ import net.fexcraft.app.json.JsonArray;
 import net.fexcraft.app.json.JsonMap;
 import net.fexcraft.lib.common.math.RGB;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
@@ -12,7 +15,7 @@ import java.util.function.Function;
  */
 public class UISlot extends UIElement {
 
-	public static BiFunction<String, Object[], Object> SLOT_GETTER;
+	public static LinkedHashMap<String, Function<Object[], Object>> GETTERS = new LinkedHashMap<>();
 	public boolean playerinv;
 	public String type;
 	public int index;
@@ -32,6 +35,10 @@ public class UISlot extends UIElement {
 			if(repeat_y < 1) repeat_y = 1;
 		}
 		else repeat_x = repeat_y = 1;
+	}
+
+	public static Object get(String type, Object[] objs){
+		return GETTERS.get(type).apply(objs);
 	}
 
 }
