@@ -69,4 +69,7 @@ public interface EntityW extends MessageSender {
 	public V3D getLookVec();
 
 	public boolean isShiftDown();
+
+	public void playSound(Object event, float volume, float pitch);
+
 }
