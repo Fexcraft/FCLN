@@ -45,4 +45,6 @@ public interface TagLW extends Iterable<TagCW> {
 
 	public abstract boolean empty();
 
+	public TagType getType(int idx);
+
 }
