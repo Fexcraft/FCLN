@@ -95,4 +95,6 @@ public interface TagCW {
 
 	public void rem(String key);
 
+	public TagType getType(String key);
+
 }
