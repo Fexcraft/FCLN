@@ -5,6 +5,7 @@ import net.fexcraft.lib.common.math.V3I;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
 
 /**
  * @author Ferdinand Calo' (FEX___96)
@@ -12,13 +13,16 @@ import java.util.concurrent.ConcurrentHashMap;
 public abstract class WrapperHolder {
 
 	public static final ConcurrentHashMap<Object, WorldW> WORLDS = new ConcurrentHashMap<>();
+	public static Function<Object, WorldW> LEVEL_PROVIDER;
 	public static WrapperHolder INSTANCE;
 
 	public static WorldW getWorld(Object obj){
-		return INSTANCE.getWorld0(obj);
+		if(obj == null) return null;
+		if(!WORLDS.containsKey(obj)){
+			WORLDS.put(obj, LEVEL_PROVIDER.apply(obj));
+		}
+		return WORLDS.get(obj);
 	}
-
-	public abstract WorldW getWorld0(Object o);
 
 	public static <W extends WorldW> W getClientWorld(){
 		return INSTANCE.getClientWorld0();
