@@ -29,6 +29,8 @@ public interface TagLW extends Iterable<TagCW> {
 
 	public void add(TagCW value);
 
+	public void add(TagLW value);
+
 	public int size();
 
 	//
