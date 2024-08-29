@@ -19,6 +19,8 @@ public interface TagLW extends Iterable<TagCW> {
 
 	public TagCW getCompound(int idx);
 
+	public TagLW getList(int idx);
+
 	public void add(String value);
 
 	public void add(float value);
@@ -48,5 +50,4 @@ public interface TagLW extends Iterable<TagCW> {
 	public abstract boolean empty();
 
 	public TagType getType(int idx);
-
 }
