@@ -81,15 +81,18 @@ public class UserInterface {
 
 	public boolean onClick(int mx, int my, int mb){
 		UIButton button = null;
-		for(Entry<String, UIButton> entry : buttons.entrySet()){
-			button = entry.getValue();
-			if(!button.visible || !button.enabled) continue;
-			if(!button.hovered(gLeft, gTop, mx, my)) continue;
-			return button.onclick(gLeft, gTop, mx, my, mb) || onAction(button, entry.getKey(), mx, my, mb);
-		}
-		for(UIField field : fields.values()){
-			if(!field.visible() /*|| !field.enabled()*/) continue;
-			if(field.hovered(gLeft, gTop, mx, my) && field.onclick(mx, my, mb)) return true;
+		for(UITab tab : tabs.values()){
+			if(!tab.visible || !tab.enabled) continue;
+			for(Entry<String, UIButton> entry : buttons.entrySet()){
+				button = entry.getValue();
+				if(!button.visible || !button.enabled) continue;
+				if(!button.hovered(gLeft, gTop, mx, my)) continue;
+				return button.onclick(gLeft, gTop, mx, my, mb) || onAction(button, entry.getKey(), mx, my, mb);
+			}
+			for(UIField field : fields.values()){
+				if(!field.visible() /*|| !field.enabled()*/) continue;
+				if(field.hovered(gLeft, gTop, mx, my) && field.onclick(mx, my, mb)) return true;
+			}
 		}
 		return false;
 	}
@@ -122,6 +125,8 @@ public class UserInterface {
 
 		public void draw(float x, float y, int u, int v, int w, int h);
 
+		public void drawFull(float x, float y, int w, int h);
+
 		public void draw(int x, int y, StackWrapper stack);
 
 		public void bind(IDL texture);
@@ -135,6 +140,11 @@ public class UserInterface {
 		public default void applyWhite(){
 			apply(RGB.WHITE);
 		}
+
+		public String translate(String str, Object... args);
+
+		public IDL loadExternal(String urltex);
+
 	}
 
 }
