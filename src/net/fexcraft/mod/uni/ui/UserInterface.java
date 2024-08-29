@@ -40,17 +40,17 @@ public class UserInterface {
 		this.container = container.set(this);
 		if(map.has("texts")){
 			for(Entry<String, JsonValue<?>> entry : map.getMap("texts").entries()){
-				texts.put(entry.getKey(), UIText.IMPLEMENTATION.getConstructor(UserInterface.class, JsonMap.class).newInstance(this, entry.getValue().asMap()));
+				texts.put(entry.getKey(), UIElement.create(UIText.IMPLEMENTATION, this, entry.getValue().asMap()));
 			}
 		}
 		if(map.has("buttons")){
 			for(Entry<String, JsonValue<?>> entry : map.getMap("buttons").entries()){
-				buttons.put(entry.getKey(), UIButton.IMPLEMENTATION.getConstructor(UserInterface.class, JsonMap.class).newInstance(this, entry.getValue().asMap()));
+				buttons.put(entry.getKey(), UIElement.create(UIButton.IMPLEMENTATION, this, entry.getValue().asMap()));
 			}
 		}
 		if(map.has("fields")){
 			for(Entry<String, JsonValue<?>> entry : map.getMap("fields").entries()){
-				fields.put(entry.getKey(), UIField.IMPLEMENTATION.getConstructor(UserInterface.class, JsonMap.class).newInstance(this, entry.getValue().asMap()));
+				fields.put(entry.getKey(), UIElement.create(UIField.IMPLEMENTATION, this, entry.getValue().asMap()));
 			}
 		}
 		if(map.has("slots")){
@@ -60,7 +60,7 @@ public class UserInterface {
 		}
 		if(map.has("tabs")){
 			for(Entry<String, JsonValue<?>> entry : map.getMap("tabs").entries()){
-				tabs.put(entry.getKey(), UITab.IMPLEMENTATION.getConstructor(UserInterface.class, JsonMap.class).newInstance(this, entry.getValue().asMap()));
+				tabs.put(entry.getKey(), UIElement.create(UITab.IMPLEMENTATION, this, entry.getValue().asMap()));
 			}
 		}
 		else{
@@ -115,6 +115,8 @@ public class UserInterface {
 	public boolean keytyped(char c, int code){
 		return false;
 	}
+
+	public void init(){}
 
 	public static interface Drawer {
 
