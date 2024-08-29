@@ -40,6 +40,10 @@ public class UIField extends UIElement {
 		//
 	}
 
+	public void maxlength(int nl){
+		//
+	}
+
 	public String text(){
 		return value;
 	}
