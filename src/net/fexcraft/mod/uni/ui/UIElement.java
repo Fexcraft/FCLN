@@ -3,6 +3,8 @@ package net.fexcraft.mod.uni.ui;
 import net.fexcraft.app.json.JsonArray;
 import net.fexcraft.app.json.JsonMap;
 
+import java.lang.reflect.InvocationTargetException;
+
 /**
  * @author Ferdinand Calo' (FEX___96)
  */
@@ -71,6 +73,10 @@ public abstract class UIElement {
 
 	public boolean hovered(){
 		return hovered;
+	}
+
+	public static <E extends UIElement> E create(Class<? extends UIElement> clazz, UserInterface ui, JsonMap map) throws Exception {
+		return (E)clazz.getConstructor(UserInterface.class, JsonMap.class).newInstance(ui, map);
 	}
 
 }
