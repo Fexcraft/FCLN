@@ -39,7 +39,7 @@ public abstract class ConfigBase {
 
 	protected abstract void onReload(JsonMap map);
 
-	private void reload(){
+	public void reload(){
 		changes = false;
 		JsonMap map = JsonHandler.parse(file);
 		onReload(map);
