@@ -17,7 +17,6 @@ import java.util.function.Consumer;
  */
 public class UserInterface {
 
-	public static Consumer<UserInterface> OI = null;
 	public ContainerInterface container;
 	public LinkedHashMap<String, UIText> texts = new LinkedHashMap<>();
 	public LinkedHashMap<String, UIButton> buttons = new LinkedHashMap<>();
@@ -76,7 +75,6 @@ public class UserInterface {
 		width = arr.get(0).integer_value();
 		height = arr.get(1).integer_value();
 		returnto = map.getString("return", null);
-		if(OI != null) OI.accept(this);
 	}
 
 	public boolean onClick(int mx, int my, int mb){
