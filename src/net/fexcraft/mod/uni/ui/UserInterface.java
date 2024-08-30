@@ -10,7 +10,6 @@ import net.fexcraft.mod.uni.item.StackWrapper;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map.Entry;
-import java.util.function.Consumer;
 
 /**
  * @author Ferdinand Calo' (FEX___96)
@@ -33,7 +32,7 @@ public class UserInterface {
 	public int screen_height;
 	public int gLeft;
 	public int gTop;
-	public Object root;
+	public UniUI root;
 
 	public UserInterface(JsonMap map, ContainerInterface container) throws Exception {
 		this.container = container.set(this);
