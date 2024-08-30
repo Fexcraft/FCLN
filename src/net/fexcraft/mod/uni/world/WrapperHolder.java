@@ -54,6 +54,24 @@ public abstract class WrapperHolder {
 
 	public abstract List<UUID> getOnlinePlayerIDs0();
 
+	public static UUID getUUIDFor(String string){
+		return INSTANCE.getUUIDFor0(string);
+	}
+
+	public abstract UUID getUUIDFor0(String string);
+
+	public static String getNameFor(UUID uuid){
+		return INSTANCE.getNameFor0(uuid);
+	}
+
+	public abstract String getNameFor0(UUID uuid);
+
+	public static void schedule(Runnable run){
+		INSTANCE.schedule0(run);
+	}
+
+	public abstract void schedule0(Runnable run);
+
 	public abstract void reset();
 
 }
