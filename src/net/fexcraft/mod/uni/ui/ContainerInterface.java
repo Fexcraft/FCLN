@@ -50,4 +50,12 @@ public class ContainerInterface {
 
 	public void update(Object localcon){}
 
+	public static String transformat(String str, Object... objs){
+		return TRANSFORMAT.apply(str, objs);
+	}
+
+	public static String translate(String str){
+		return TRANSLATOR.apply(str);
+	}
+
 }
